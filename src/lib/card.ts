@@ -56,10 +56,11 @@ export const card: Card = {
     'Esta práctica dejaba a las vacas bastante mal&nbsp;<br>nutridas y afortunadamente ya no se produce.',
   'sentence-audio': '[sound:¿Por_qué_la_ropa_mojada__381000_PJEKijnR.mp3]',
   'sentence-translation': 'The animal is isolated',
-  image: '<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.X2DjyJZMkkxSQiMHw9EgnAHaD6%26pid%3DApi&f=1&ipt=b3f14d0bdb739d3a0b2f0f293634724e01c81c5d48471ea07d91bb76fc3e3b03&ipo=images">',
+  image:
+    '<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.X2DjyJZMkkxSQiMHw9EgnAHaD6%26pid%3DApi&f=1&ipt=b3f14d0bdb739d3a0b2f0f293634724e01c81c5d48471ea07d91bb76fc3e3b03&ipo=images">',
   url: '<a href="https://www.youtube.com/watch?v=ycgdF-ugV_s">https://www.youtube.com/watch?v=ycgdF-ugV_s</a>',
   notes: 'Хуня какая-то это правда не совсем понятная',
   'cloze-prefix': 'Esta práctica ',
   'cloze-body': 'dejaba',
-  'cloze-suffix': ' a las vacas bastante mal'
+  'cloze-suffix': ' a las vacas bastante mal',
 }
