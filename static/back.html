@@ -6,9 +6,10 @@
     <section class="flex w-full flex-col gap-y-4">
       <h1 class="text-center text-3xl font-bold">{{expression}}</h1>
 
-      <div class="grid grid-cols-[1fr_min-content] items-baseline gap-4">
+      <div class="grid grid-cols-[1fr_min-content]">
         <div class="dark:text-slate-200">{{sentence}}</div>
-        <label class="relative cursor-pointer text-violet-500">
+        {{#sentence-audio}}
+        <label class="relative ml-4 cursor-pointer text-violet-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -23,8 +24,9 @@
           >
             <polygon points="6 3 20 12 6 21 6 3" />
           </svg>
-          <div class="invisible absolute">{{sentence-audio}}</div>
+          <div class="hidden">{{sentence-audio}}</div>
         </label>
+        {{/sentence-audio}}
       </div>
       <label for="translation" class="text-slate-600 dark:text-slate-500">
         <input type="checkbox" name="" id="translation" class="peer hidden appearance-none" />
@@ -35,13 +37,23 @@
         </div>
       </label>
     </section>
-    <div class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
+
+    {{#image}}
+    <div class="[&>img]:w-full [&>img]:rounded-3xl">
+      <div class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
+    </div>
+    {{/image}}
+
     <section class="flex flex-col gap-y-4">
+      {{#notes}}
       <div class="grid grid-cols-[min-content_1fr] gap-4 text-slate-800 dark:text-slate-200">
         <div class="h-full w-1 bg-violet-500"></div>
         {{notes}}
       </div>
+      {{/notes}}
+
       <div class="w-full p-0 text-lg">{{meaning}}</div>
+
       <div class="">
         <div class="relative w-fit text-violet-500">
           <svg

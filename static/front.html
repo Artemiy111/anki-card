@@ -5,6 +5,7 @@
   >
     <section class="flex w-full flex-col gap-y-4">
       <div class="relative">
+        {{#expression-audio}}
         <h1 class="mx-8 text-center text-3xl font-bold">{{expression}}</h1>
         <label class="absolute top-2 right-0 cursor-pointer text-violet-500">
           <svg
@@ -21,8 +22,13 @@
           >
             <polygon points="6 3 20 12 6 21 6 3" />
           </svg>
-          <div class="invisible absolute">{{expression-audio}}</div>
+          <div class="hidden">{{expression-audio}}</div>
         </label>
+        {{/expression-audio}}
+        <!--  -->
+        {{^expression-audio}}
+        <h1 class="text-center text-3xl font-bold">{{expression}}</h1>
+        {{/expression-audio}}
       </div>
       <div class="text-xl text-slate-600 dark:text-slate-200">
         <span>{{cloze-prefix}}</span>
