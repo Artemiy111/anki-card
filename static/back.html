@@ -1,9 +1,4 @@
 <!doctype html>
-
-<script lang="ts">
-  import { card } from '$lib/card'
-</script>
-
 <main class="grid min-h-dvh w-full items-center justify-center py-10 dark:bg-slate-800">
   <div
     class="flex min-h-60 w-lg flex-col items-center gap-6 rounded-4xl bg-slate-50 p-12 pt-10 text-xl dark:bg-slate-950 dark:text-white"
@@ -13,7 +8,7 @@
 
       <div class="grid grid-cols-[1fr_min-content] items-baseline gap-4">
         <div class="dark:text-slate-200">{{sentence}}</div>
-        <div class="cursor-pointer text-violet-500">
+        <label class="relative cursor-pointer text-violet-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -28,8 +23,8 @@
           >
             <polygon points="6 3 20 12 6 21 6 3" />
           </svg>
-          <div class="hidden">{{expression-audio}}</div>
-        </div>
+          <div class="invisible absolute">{{sentence-audio}}</div>
+        </label>
       </div>
       <label for="translation" class="text-slate-600 dark:text-slate-500">
         <input type="checkbox" name="" id="translation" class="peer hidden appearance-none" />
@@ -46,7 +41,7 @@
         <div class="h-full w-1 bg-violet-500"></div>
         {{notes}}
       </div>
-      <div class="text-lg">{{meaning}}</div>
+      <div class="w-full p-0 text-lg">{{meaning}}</div>
       <div class="">
         <div class="relative w-fit text-violet-500">
           <svg
@@ -65,7 +60,7 @@
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </svg>
           <span
-            class="absolute inset-0 z-1 h-full w-full text-transparent [&>a]:overflow-hidden [&>a]:whitespace-nowrap"
+            class="absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap text-transparent"
           >
             {{url}}
           </span>

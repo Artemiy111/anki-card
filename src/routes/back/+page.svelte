@@ -2,7 +2,7 @@
   import { card } from '$lib/card'
 </script>
 
-<main class="grid min-h-dvh w-full items-center justify-center py-10 dark:bg-slate-800">
+<main class="mx-auto min-h-dvh w-fit my-10 dark:bg-slate-800">
   <div
     class="flex min-h-60 w-lg flex-col items-center gap-6 rounded-4xl bg-slate-50 p-12 pt-10 text-xl dark:bg-slate-950 dark:text-white"
   >
@@ -13,7 +13,7 @@
         <div class="dark:text-slate-200">
           {@html card.sentence}
         </div>
-        <div class="cursor-pointer text-violet-500">
+        <label class="relative cursor-pointer text-violet-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -26,8 +26,8 @@
             stroke-linejoin="round"
             class="lucide lucide-play-icon lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg
           >
-          <div class="hidden">{@html card['expression-audio']}</div>
-        </div>
+          <div class="absolute invisible">{@html card['sentence-audio']}</div>
+        </label>
       </div>
       <label for="translation" class=" text-slate-600 dark:text-slate-500">
         <input type="checkbox" name="" id="translation" class="peer hidden appearance-none" />
@@ -46,7 +46,7 @@
         <div class="h-full w-1 bg-violet-500"></div>
         {@html card.notes}
       </div>
-      <div class="text-lg">
+      <div class="text-lg w-full p-0">
         {@html card.meaning}
       </div>
       <div class="">
@@ -67,7 +67,7 @@
             /></svg
           >
           <span
-            class="absolute inset-0 z-1 h-full w-full text-transparent [&>a]:overflow-hidden [&>a]:whitespace-nowrap"
+            class="absolute inset-0 z-1 w-full text-transparent overflow-hidden whitespace-nowrap" 
           >
             {@html card.url}
           </span>

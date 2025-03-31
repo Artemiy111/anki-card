@@ -200,6 +200,12 @@
   .mx-8 {
     margin-inline: calc(var(--spacing) * 8);
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .my-10 {
+    margin-block: calc(var(--spacing) * 10);
+  }
   .contents {
     display: contents;
   }
@@ -275,6 +281,9 @@
   .gap-y-4 {
     row-gap: calc(var(--spacing) * 4);
   }
+  .overflow-hidden {
+    overflow: hidden;
+  }
   .rounded-4xl {
     border-radius: var(--radius-4xl);
   }
@@ -293,6 +302,9 @@
   }
   .bg-violet-500 {
     background-color: var(--color-violet-500);
+  }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
   }
   .p-12 {
     padding: calc(var(--spacing) * 12);
@@ -325,6 +337,9 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
   }
   .text-slate-600 {
     color: var(--color-slate-600);
@@ -385,16 +400,6 @@
   .dark\:text-white {
     @media (prefers-color-scheme: dark) {
       color: var(--color-white);
-    }
-  }
-  .\[\&\>a\]\:overflow-hidden {
-    &>a {
-      overflow: hidden;
-    }
-  }
-  .\[\&\>a\]\:whitespace-nowrap {
-    &>a {
-      white-space: nowrap;
     }
   }
   .\[\&\>img\]\:w-full {
