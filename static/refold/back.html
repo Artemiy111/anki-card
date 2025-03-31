@@ -1,0 +1,30 @@
+<div class="customCard cardBack">
+  <div class="targetWordContainerBack">
+    <span class="targetWord">{{expression}}</span>
+  </div>
+
+  <div class="section borderBottom">
+    <div class="indent">
+      <div class="exampleSentenceWrapper">
+        <span>{{sentence}}</span>
+        <span>{{sentence-audio}}</span>
+      </div>
+      <div class="sentenceTranslation">{{hint:sentence-translation}}</div>
+    </div>
+  </div>
+
+  {{#image}}
+  <div class="image borderBottom">{{image}}</div>
+  {{/image}}
+
+  <div class="section borderBottom">
+    <div class="indent">
+      <ul class="-definitionsList">
+        {{#meaning}}
+        <li>{{meaning}}</li>
+        {{/meaning}}
+        <li></li>
+      </ul>
+    </div>
+  </div>
+</div>

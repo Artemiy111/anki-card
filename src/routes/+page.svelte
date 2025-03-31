@@ -22,7 +22,7 @@
             stroke-linejoin="round"
             class="lucide lucide-play-icon lucide-play"><polygon points="6 3 20 12 6 21 6 3" /></svg
           >
-          <div class="hidden">{@html card['expression-audio']}</div>
+          <div class="absolute invisible">{@html card['expression-audio']}</div>
         </div>
       </div>
       <div class="text-xl text-slate-600 dark:text-slate-200">

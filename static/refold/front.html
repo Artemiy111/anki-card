@@ -1,0 +1,566 @@
+<div class="customCard">
+  <div class="targetWordContainerFront">
+    <div class="targetWord">{{expression}}</div>
+    <div class="exampleSentence">
+      <span>{{cloze-prefix}}</span>
+      <span style="color: var(--color-audio-button)">{{cloze-body}}</span>
+      <span>{{cloze-suffix}}</span>
+    </div>
+  </div>
+  {{#expression-audio}}
+  <div class="wordAudioButtonFront">{{expression-audio}}</div>
+  {{/expression-audio}}
+</div>
+
+<style>
+  /* 
+Sentence Mining Note Type Variables 
+	You can change the values of these color and font-size variables to customize your experience.
+*/
+
+  :root {
+    /* Increase this max-width-card value to increase the maximum width of your card! */
+    --max-width-card: 400px;
+
+    /* Increase the font-size to make the card easier to read! If you want to make the text bigger and easier to see, we suggest that you also increase the max-width of the card so you have more space. The card's max-width variable is the first variable, above this comment. */
+    --font-size-card: 18px;
+    --font-size-targetWord: 26px;
+    --font-size-header: 16px;
+
+    /* Change the color values of these variables to change the colors in your cards! NightMode colors are only active when you are running anki in Night Mode (dark mode). */
+    --color-text-primary: #18191f;
+    --color-nightMode-text-primary: #fbfafe;
+    --color-card-background: #ffffff;
+    --color-nightMode-card-background: #0b0716;
+    --color-box-shadow: rgba(18, 62, 119, 0.1);
+    --color-audio-button: #8369ed;
+    --color-list-bullets: #8369ed;
+    --color-hint: #6b7280;
+    --color-nightMode-hint: #9ca3af;
+    --color-sentence-translation: #6b7280;
+    --color-nightMode-sentence-translation: #9ca3af;
+    --color-header: #9ca3af;
+    --color-nightMode-header: rgba(255, 255, 255, 0.5);
+    --color-divider: #e5e7eb;
+    --color-nightMode-divider: #1f2937;
+  }
+
+  /* Chrome Base Styles */
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  /* Anki Browser Styles */
+  div {
+    display: block;
+  }
+
+  body {
+    display: block;
+    line-height: 1.187;
+  }
+
+  html {
+    display: block;
+    color: -internal-root-color;
+  }
+
+  /* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+
+  /* HTML5 display-role reset for older browsers */
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section {
+    display: block;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+  }
+  blockquote,
+  q {
+    quotes: none;
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  /* Refold Specific Styles */
+
+  /* Anki 2.1.49 sets box-sizing to content-box  */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Copyright: Ankitects Pty Ltd and contributors
+ * License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html */
+
+  body.nightMode::-webkit-scrollbar {
+    background: #2f2f31;
+  }
+
+  body.nightMode::-webkit-scrollbar:horizontal {
+    height: 12px;
+  }
+
+  body.nightMode::-webkit-scrollbar:vertical {
+    width: 12px;
+  }
+
+  body.nightMode::-webkit-scrollbar-thumb {
+    background: #656565;
+    border-radius: 8px;
+  }
+
+  body.nightMode::-webkit-scrollbar-thumb:horizontal {
+    min-width: 50px;
+  }
+
+  body.nightMode::-webkit-scrollbar-thumb:vertical {
+    min-height: 50px;
+  }
+
+  body {
+    overscroll-behavior: none;
+  }
+
+  /* defaultnight-mode-specific colors */
+  /* Copyright: Ankitects Pty Ltd and contributors
+ * License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html */
+
+  body {
+    margin: 0 !important;
+    overflow-wrap: break-word;
+  }
+
+  #_flag {
+    position: fixed;
+    right: 10px;
+    top: 0;
+    font-size: 30px;
+    display: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+
+  #_mark {
+    position: fixed;
+    left: 10px;
+    top: 0;
+    font-size: 30px;
+    color: yellow;
+    display: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+
+  #typeans {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .typeGood {
+    background: #0f0;
+  }
+
+  .typeBad {
+    background: #f00;
+  }
+
+  .typeMissed {
+    background: #ccc;
+  }
+
+  .nightMode .latex {
+    filter: invert(100%);
+  }
+
+  .drawing {
+    zoom: 50%;
+  }
+
+  .nightMode img.drawing {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  /* 
+
+-----------DECK STYLES--------------
+
+*/
+
+  .card {
+    padding: 16px;
+  }
+
+  .customCard {
+    margin: 0 auto;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-card-background);
+    box-shadow: 1px 3px 10px var(--color-box-shadow);
+    border-radius: 8px;
+    min-height: 200px;
+    max-width: var(--max-width-card);
+
+    font-weight: 500;
+    font-size: var(--font-size-card);
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-primary);
+  }
+
+  .nightMode .customCard {
+    color: var(--color-nightMode-text-primary);
+    background-color: var(--color-nightMode-card-background);
+  }
+
+  .cardBack {
+    flex-direction: column;
+  }
+
+  .targetWord {
+    font-size: var(--font-size-targetWord);
+    font-weight: 600;
+  }
+
+  .targetWordContainerFront {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .targetWordContainerBack {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: stretch;
+    padding: 32px 16px 24px 16px;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    gap: 6px;
+    padding: 12px 16px 16px 16px;
+    /* background-color: #8369ed; */
+  }
+
+  .borderTop {
+    border-top: 1px solid var(--color-divider);
+  }
+
+  .borderBottom {
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .nightMode .borderTop {
+    border-color: var(--color-nightMode-divider);
+  }
+
+  .nightMode .borderBottom {
+    border-color: var(--color-nightMode-divider);
+  }
+
+  .header {
+    color: var(--color-header);
+    font-size: var(--font-size-header);
+    font-weight: 400;
+  }
+
+  .nightMode .header {
+    color: var(--color-nightMode-header);
+  }
+
+  .exampleSentenceWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 5px;
+  }
+
+  .exampleSentence {
+    padding: 10px;
+    color: var(--color-hint);
+  }
+
+  .nightMode .exampleSentence {
+    color: var(--color-nightMode-hint);
+  }
+
+  .sentenceTranslation {
+    color: var(--color-sentence-translation);
+    font-weight: 400;
+    font-style: italic;
+    padding-top: 4px;
+    padding-left: 4px;
+  }
+
+  .nightMode .sentenceTranslation {
+    color: var(--color-nightMode-sentence-translation);
+  }
+
+  .hint {
+    color: var(--color-hint);
+  }
+
+  .nightMode .hint {
+    color: var(--color-nightMode-hint);
+  }
+
+  .definitionsList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 16px;
+  }
+
+  .definitionsList li::before {
+    content: '\2022';
+    color: var(--color-list-bullets);
+    display: inline-block;
+    width: 8px;
+    margin-left: -16px;
+    font-size: 22px;
+    padding-right: 6px;
+  }
+
+  .image {
+    width: 100%;
+    height: 210px;
+  }
+
+  .image img {
+    object-fit: contain;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .linkButtonGroup {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .linkButton {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 16px;
+    border: 1px solid var(--color-divider);
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  #tutorialButton {
+    flex: none;
+    border: none;
+    padding: 4px 0px;
+  }
+
+  .nightMode .linkButton {
+    color: var(--color-nightMode-text-primary);
+    border-color: var(--color-nightMode-divider);
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+    gap: 6px;
+    padding: 12px 16px;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--color-hint);
+  }
+
+  .nightMode .footer {
+    color: var(--color-nightMode-hint);
+  }
+
+  .wordAudioButtonFront {
+    position: absolute;
+    top: 21px;
+    right: 22px;
+  }
+
+  .wordAudioButtonBack {
+    margin-left: 8px;
+  }
+
+  .replay-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .replay-button svg path {
+    fill: var(--color-audio-button);
+  }
+
+  .replay-button svg circle {
+    fill: none;
+    stroke: none;
+  }
+
+  .reportIconContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .horizontalPadding {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .indent {
+    padding-left: 12px;
+  }
+
+  .centerVertically {
+    display: flex;
+    align-items: center;
+  }
+
+  @font-face {
+    font-family: Inter;
+    src: url('_Inter-Regular.ttf');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url('_Inter-Medium.ttf');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url('_Inter-SemiBold.ttf');
+    font-weight: 600;
+  }
+</style>
