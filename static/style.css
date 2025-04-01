@@ -1,4 +1,12 @@
-/*! tailwindcss v4.0.17 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.1.0 | MIT License | https://tailwindcss.com */
+@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+  @layer base {
+    *, ::before, ::after, ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-font-weight: initial;
+    }
+  }
+}
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -8,6 +16,7 @@
       "Courier New", monospace;
     --color-violet-500: oklch(0.606 0.25 292.717);
     --color-slate-50: oklch(0.984 0.003 247.858);
+    --color-slate-100: oklch(0.968 0.007 247.896);
     --color-slate-200: oklch(0.929 0.013 255.508);
     --color-slate-500: oklch(0.554 0.046 257.417);
     --color-slate-600: oklch(0.446 0.043 257.281);
@@ -16,10 +25,18 @@
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-lg: 32rem;
+    --container-xl: 36rem;
+    --container-2xl: 42rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-semibold: 600;
@@ -179,29 +196,47 @@
   .absolute {
     position: absolute;
   }
+  .fixed {
+    position: fixed;
+  }
   .relative {
     position: relative;
   }
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
+  .inset-x-0 {
+    inset-inline: calc(var(--spacing) * 0);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
   .top-2 {
     top: calc(var(--spacing) * 2);
+  }
+  .top-4 {
+    top: calc(var(--spacing) * 4);
   }
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
+  .right-\[calc\(8\*var\(--spacing\)\+100\%-100dvw\)\] {
+    right: calc(8 * var(--spacing) + 100% - 100dvw);
+  }
+  .bottom-4 {
+    bottom: calc(var(--spacing) * 4);
+  }
   .z-1 {
     z-index: 1;
+  }
+  .z-10 {
+    z-index: 10;
   }
   .mx-8 {
     margin-inline: calc(var(--spacing) * 8);
   }
   .mx-auto {
     margin-inline: auto;
-  }
-  .my-10 {
-    margin-block: calc(var(--spacing) * 10);
   }
   .ml-4 {
     margin-left: calc(var(--spacing) * 4);
@@ -218,11 +253,17 @@
   .hidden {
     display: none;
   }
-  .h-dvh {
-    height: 100dvh;
+  .h-\[500px\] {
+    height: 500px;
+  }
+  .h-\[calc\(100dvh-8\*var\(--spacing\)\)\] {
+    height: calc(100dvh - 8 * var(--spacing));
   }
   .h-full {
     height: 100%;
+  }
+  .h-max {
+    height: max-content;
   }
   .min-h-60 {
     min-height: calc(var(--spacing) * 60);
@@ -233,14 +274,17 @@
   .w-1 {
     width: calc(var(--spacing) * 1);
   }
+  .w-2xl {
+    width: var(--container-2xl);
+  }
+  .w-\[min\(100dvw-8\*var\(--spacing\)\,var\(--container-lg\)\)\] {
+    width: min(100dvw - 8 * var(--spacing), var(--container-lg));
+  }
   .w-fit {
     width: fit-content;
   }
   .w-full {
     width: 100%;
-  }
-  .w-lg {
-    width: var(--container-lg);
   }
   .cursor-pointer {
     cursor: pointer;
@@ -266,8 +310,12 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
-  .gap-6 {
-    gap: calc(var(--spacing) * 6);
+  .space-y-4 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+    }
   }
   .gap-y-4 {
     row-gap: calc(var(--spacing) * 4);
@@ -284,6 +332,9 @@
   .bg-slate-50 {
     background-color: var(--color-slate-50);
   }
+  .bg-slate-100 {
+    background-color: var(--color-slate-100);
+  }
   .bg-slate-200 {
     background-color: var(--color-slate-200);
   }
@@ -293,25 +344,32 @@
   .p-0 {
     padding: calc(var(--spacing) * 0);
   }
-  .p-12 {
-    padding: calc(var(--spacing) * 12);
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
   }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
-  .pt-10 {
-    padding-top: calc(var(--spacing) * 10);
+  .py-16 {
+    padding-block: calc(var(--spacing) * 16);
+  }
+  .pt-7 {
+    padding-top: calc(var(--spacing) * 7);
   }
   .text-center {
     text-align: center;
   }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
-  .text-lg {
-    font-size: var(--text-lg);
-    line-height: var(--tw-leading, var(--text-lg--line-height));
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
   }
   .text-xl {
     font-size: var(--text-xl);
@@ -354,6 +412,11 @@
   .\[sound\:¿Por_qué_la_ropa_mojada__381000_PJEKijnR\.mp3\] {
     sound: ¿Por qué la ropa mojada  381000 PJEKijnR.mp3;
   }
+  .\*\:bg-transparent\! {
+    :is(& > *) {
+      background-color: transparent !important;
+    }
+  }
   .peer-checked\:bg-transparent {
     &:is(:where(.peer):checked ~ *) {
       background-color: transparent;
@@ -364,28 +427,65 @@
       color: var(--color-slate-600);
     }
   }
+  .open\:block {
+    &:is([open], :popover-open, :open) {
+      display: block;
+    }
+  }
+  .xs\:text-3xl {
+    @media (width >= 30rem) {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+  }
+  .xs\:text-lg {
+    @media (width >= 30rem) {
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .sm\:p-12 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 12);
+    }
+  }
+  .sm\:pt-10 {
+    @media (width >= 40rem) {
+      padding-top: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:right-\[calc\(50\%-var\(--container-xl\)\/2-24px-50px\)\] {
+    @media (width >= 64rem) {
+      right: calc(50% - var(--container-xl) / 2 - 24px - 50px);
+    }
+  }
+  .lg\:w-xl {
+    @media (width >= 64rem) {
+      width: var(--container-xl);
+    }
+  }
   .dark\:bg-slate-800 {
-    @media (prefers-color-scheme: dark) {
+    &:where(.nightMode, .nightMode *) {
       background-color: var(--color-slate-800);
     }
   }
   .dark\:bg-slate-950 {
-    @media (prefers-color-scheme: dark) {
+    &:where(.nightMode, .nightMode *) {
       background-color: var(--color-slate-950);
     }
   }
   .dark\:text-slate-200 {
-    @media (prefers-color-scheme: dark) {
+    &:where(.nightMode, .nightMode *) {
       color: var(--color-slate-200);
     }
   }
   .dark\:text-slate-500 {
-    @media (prefers-color-scheme: dark) {
+    &:where(.nightMode, .nightMode *) {
       color: var(--color-slate-500);
     }
   }
   .dark\:text-white {
-    @media (prefers-color-scheme: dark) {
+    &:where(.nightMode, .nightMode *) {
       color: var(--color-white);
     }
   }
@@ -399,6 +499,34 @@
       border-radius: var(--radius-3xl);
     }
   }
+  .\[\&\>pre\]\:h-max {
+    &>pre {
+      height: max-content;
+    }
+  }
+  .\[\&\>pre\]\:w-full {
+    &>pre {
+      width: 100%;
+    }
+  }
+  .\[\&\>pre\]\:overflow-auto {
+    &>pre {
+      overflow: auto;
+    }
+  }
+  .\[\&\>pre\]\:bg-transparent\! {
+    &>pre {
+      background-color: transparent !important;
+    }
+  }
+}
+html {
+  scrollbar-gutter: stable;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
 }
 @property --tw-font-weight {
   syntax: "*";

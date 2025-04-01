@@ -62,5 +62,5 @@ export const card: Card = {
   notes: 'Хуня какая-то это правда не совсем понятная',
   'cloze-prefix': 'Esta práctica ',
   'cloze-body': 'dejaba',
-  'cloze-suffix': ' a las vacas bastante mal',
+  'cloze-suffix': ' al',
 }

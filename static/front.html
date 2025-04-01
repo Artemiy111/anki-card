@@ -1,12 +1,12 @@
 <!doctype html>
-<main class="grid h-dvh w-full items-center justify-center dark:bg-slate-800">
+<main class="xs:text-lg absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base dark:bg-slate-800"
   <div
-    class="flex min-h-60 w-lg flex-col items-center gap-4 rounded-4xl bg-slate-50 p-12 pt-10 dark:bg-slate-950 dark:text-white"
+  class="flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl bg-slate-50 p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl dark:bg-slate-950 dark:text-white"
   >
     <section class="flex w-full flex-col gap-y-4">
       <div class="relative">
         {{#expression-audio}}
-        <h1 class="mx-8 text-center text-3xl font-bold">{{expression}}</h1>
+        <h1 class="xs:text-3xl mx-8 text-center text-2xl font-bold">{{expression}}</h1>
         <label class="absolute top-2 right-0 cursor-pointer text-violet-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,10 +27,10 @@
         {{/expression-audio}}
         <!--  -->
         {{^expression-audio}}
-        <h1 class="text-center text-3xl font-bold">{{expression}}</h1>
+        <h1 class="xs:text-3xl text-center text-2xl font-bold">{{expression}}</h1>
         {{/expression-audio}}
       </div>
-      <div class="text-xl text-slate-600 dark:text-slate-200">
+      <div class="text-slate-600 dark:text-slate-200">
         <span>{{cloze-prefix}}</span>
         <span class="font-semibold text-violet-500">{{cloze-body}}</span>
         <span>{{cloze-suffix}}</span>

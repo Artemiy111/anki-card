@@ -1,10 +1,10 @@
 <!doctype html>
 <main class="grid min-h-dvh w-full items-center justify-center py-10 dark:bg-slate-800">
   <div
-    class="flex min-h-60 w-lg flex-col items-center gap-6 rounded-4xl bg-slate-50 p-12 pt-10 text-xl dark:bg-slate-950 dark:text-white"
+    class="xs:text-lg absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base dark:bg-slate-800"
   >
     <section class="flex w-full flex-col gap-y-4">
-      <h1 class="text-center text-3xl font-bold">{{expression}}</h1>
+      <h1 class="xs:text-3xl text-center text-2xl font-bold">{{expression}}</h1>
 
       <div class="grid grid-cols-[1fr_min-content]">
         <div class="dark:text-slate-200">{{sentence}}</div>
@@ -52,7 +52,7 @@
       </div>
       {{/notes}}
 
-      <div class="w-full p-0 text-lg">{{meaning}}</div>
+      <div class="w-full p-0">{{meaning}}</div>
 
       <div class="">
         <div class="relative w-fit text-violet-500">

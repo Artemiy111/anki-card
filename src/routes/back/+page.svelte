@@ -2,12 +2,14 @@
   import { card } from '$lib/card'
 </script>
 
-<main class="mx-auto my-10 min-h-dvh w-fit dark:bg-slate-800">
+<main
+  class="xs:text-lg absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base dark:bg-slate-800"
+>
   <div
-    class="flex min-h-60 w-lg flex-col items-center gap-6 rounded-4xl bg-slate-50 p-12 pt-10 text-xl dark:bg-slate-950 dark:text-white"
+    class="flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl bg-slate-50 p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl dark:bg-slate-950 dark:text-white"
   >
     <section class="flex w-full flex-col gap-y-4">
-      <h1 class="text-center text-3xl font-bold">{@html card.expression}</h1>
+      <h1 class="xs:text-3xl text-center text-2xl font-bold">{@html card.expression}</h1>
 
       <div class="grid grid-cols-[1fr_min-content]">
         <div class="dark:text-slate-200">
@@ -56,7 +58,7 @@
         </div>
       {/if}
 
-      <div class="w-full p-0 text-lg">
+      <div class="w-full p-0">
         {@html card.meaning}
       </div>
 

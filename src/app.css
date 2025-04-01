@@ -1,3 +1,11 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:where(.nightMode, .nightMode *));
+
+@theme {
+  --breakpoint-xs: 30rem;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
