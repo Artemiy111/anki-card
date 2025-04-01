@@ -48,7 +48,7 @@
       </div>
     {/if}
 
-    <section class="flex flex-col gap-y-4">
+    <section class="flex w-full flex-col gap-y-4">
       {#if card.notes}
         <div class="grid grid-cols-[min-content_1fr] gap-4 text-slate-800 dark:text-slate-200">
           <div class="h-full w-1 bg-violet-500"></div>
@@ -59,7 +59,7 @@
       <div class="w-full p-0 text-lg">
         {@html card.meaning}
       </div>
-      
+
       <div class="">
         <div class="relative w-fit text-violet-500">
           <svg
@@ -77,9 +77,7 @@
               d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
             /></svg
           >
-          <span
-            class="absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap text-slate-50"
-          >
+          <span class="absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap text-slate-50">
             {@html card.url}
           </span>
         </div>

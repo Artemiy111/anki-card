@@ -27,7 +27,7 @@
             <div class="hidden">{@html card['expression-audio']}</div>
           </label>
         {:else}
-        <h1 class="text-center text-3xl font-bold">{@html card.expression}</h1>
+          <h1 class="text-center text-3xl font-bold">{@html card.expression}</h1>
         {/if}
       </div>
       <div class="text-xl text-slate-600 dark:text-slate-200">
