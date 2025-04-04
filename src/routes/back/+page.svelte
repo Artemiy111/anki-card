@@ -58,7 +58,7 @@
         </div>
       {/if}
 
-      <div class="w-full p-0">
+      <div class="xs:text-base w-full p-0 text-sm">
         {@html card.meaning}
       </div>
 
