@@ -12,7 +12,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "format": "prettier --write .",
     "lint": "prettier --check .",
-    "stylegen": "bun x @tailwindcss/cli -i ./src/app.css -o ./static/style.css"
+    "stylegen": "bun x @tailwindcss/cli -i ./src/app.css -o ./src/assets/style.css"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^5.0.0",

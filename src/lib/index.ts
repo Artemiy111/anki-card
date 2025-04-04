@@ -10,6 +10,6 @@ const highlighter = await createHighlighter({
   langs: ['html', 'css'],
 })
 
-export const frontHtml = highlighter.codeToHtml(frontText, { 'lang': 'html', theme: 'github-light' })
-export const backHtml = highlighter.codeToHtml(backText, { 'lang': 'html', theme: 'github-light' })
-export const styleHtml = highlighter.codeToHtml(styleText, { 'lang': 'css', theme: 'github-light' })
+export const frontHtml = highlighter.codeToHtml(frontText, { lang: 'html', theme: 'github-light' })
+export const backHtml = highlighter.codeToHtml(backText, { lang: 'html', theme: 'github-light' })
+export const styleHtml = highlighter.codeToHtml(styleText, { lang: 'css', theme: 'github-light' })

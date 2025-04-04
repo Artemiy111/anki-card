@@ -1,7 +1,9 @@
 <!doctype html>
-<main class="grid min-h-dvh w-full items-center justify-center py-10 dark:bg-slate-800">
+<main
+  class="xs:text-lg absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base dark:bg-slate-800"
+>
   <div
-    class="xs:text-lg absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base dark:bg-slate-800"
+    class="flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl bg-slate-50 p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl dark:bg-slate-950 dark:text-white"
   >
     <section class="flex w-full flex-col gap-y-4">
       <h1 class="xs:text-3xl text-center text-2xl font-bold">{{expression}}</h1>
@@ -39,9 +41,7 @@
     </section>
 
     {{#image}}
-    <div class="[&>img]:w-full [&>img]:rounded-3xl">
-      <div class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
-    </div>
+    <div class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
     {{/image}}
 
     <section class="flex w-full flex-col gap-y-4">
@@ -71,9 +71,7 @@
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </svg>
-          <span
-            class="absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap text-transparent"
-          >
+          <span class="absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap text-slate-50">
             {{url}}
           </span>
         </div>
