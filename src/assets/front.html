@@ -6,7 +6,7 @@
     <section class="flex w-full flex-col gap-y-4">
       <div class="relative">
         {{#expression-audio}}
-        <h1 class="xs:text-3xl mx-8 text-center text-2xl font-bold">{{expression}}</h1>
+        <h1 class="xs:text-3xl mx-8 text-center text-2xl font-bold">{@html card.expression}</h1>
         <label class="absolute top-2 right-0 cursor-pointer text-violet-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -19,10 +19,9 @@
             stroke-linecap="round"
             stroke-linejoin="round"
             class="lucide lucide-play-icon lucide-play"
+            ><polygon points="6 3 20 12 6 21 6 3" /></svg
           >
-            <polygon points="6 3 20 12 6 21 6 3" />
-          </svg>
-          <div class="hidden">{{expression-audio}}</div>
+          <div class="hidden">{@html card['expression-audio']}</div>
         </label>
         {{/expression-audio}}
         <!--  -->
@@ -30,9 +29,9 @@
         <h1 class="xs:text-3xl text-center text-2xl font-bold">{{expression}}</h1>
         {{/expression-audio}}
       </div>
-      <div class="text-slate-600 dark:text-slate-200">
+      <div class="text-slate-500 dark:text-slate-400">
         <span>{{cloze-prefix}}</span>
-        <span class="font-semibold text-violet-500">{{cloze-body}}</span>
+        <span class="text-violet-500">{{cloze-body}}</span>
         <span>{{cloze-suffix}}</span>
       </div>
     </section>

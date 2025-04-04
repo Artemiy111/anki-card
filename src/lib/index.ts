@@ -1,7 +1,7 @@
 // place files you want to import through the `$lib` alias in this folder.
-import frontText from '../../static/front.html?raw'
-import backText from '../../static/back.html?raw'
-import styleText from '../../static/style.css?raw'
+import frontText from '../assets/front.html?raw'
+import backText from '../assets/back.html?raw'
+import styleText from '../assets/style.css?raw'
 
 import { createHighlighter } from 'shiki'
 

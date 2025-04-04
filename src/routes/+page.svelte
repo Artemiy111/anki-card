@@ -1,6 +1,5 @@
 <script lang="ts">
   import { card } from '$lib/card'
-  import {frontHtml} from '$lib'
 </script>
 
 <main
@@ -33,9 +32,9 @@
           <h1 class="xs:text-3xl text-center text-2xl font-bold">{@html card.expression}</h1>
         {/if}
       </div>
-      <div class="text-slate-600 dark:text-slate-200">
+      <div class="text-slate-500 dark:text-slate-400">
         <span>{@html card['cloze-prefix']}</span>
-        <span class="font-semibold text-violet-500">{@html card['cloze-body']}</span>
+        <span class="text-violet-500">{@html card['cloze-body']}</span>
         <span>{@html card['cloze-suffix']}</span>
       </div>
     </section>
