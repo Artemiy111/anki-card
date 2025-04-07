@@ -5,11 +5,16 @@ import styleText from '../assets/style.css?raw'
 
 import { createHighlighter } from 'shiki'
 
-const highlighter = await createHighlighter({
-  themes: ['github-light'],
-  langs: ['html', 'css'],
-})
+export const getCode = async () => {
+  const highlighter = await createHighlighter({
+    themes: ['github-light'],
+    langs: ['html', 'css'],
+  })
 
-export const frontHtml = highlighter.codeToHtml(frontText, { lang: 'html', theme: 'github-light' })
-export const backHtml = highlighter.codeToHtml(backText, { lang: 'html', theme: 'github-light' })
-export const styleHtml = highlighter.codeToHtml(styleText, { lang: 'css', theme: 'github-light' })
+  const frontHtml = highlighter.codeToHtml(frontText, { lang: 'html', theme: 'github-light' })
+  const backHtml = highlighter.codeToHtml(backText, { lang: 'html', theme: 'github-light' })
+  const styleHtml = highlighter.codeToHtml(styleText, { lang: 'css', theme: 'github-light' })
+
+  return { frontHtml, backHtml, styleHtml }
+}
+

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { CodeIcon } from 'lucide-svelte'
-  import { frontHtml, backHtml, styleHtml } from '$lib'
+
+  let { data }: { data: { frontHtml: string, backHtml: string, styleHtml: string } } = $props()
+
 </script>
 
 <button
@@ -23,10 +25,10 @@
     class="relative h-[500px] w-full space-y-4 p-8 [&>pre]:h-max [&>pre]:w-full [&>pre]:overflow-auto [&>pre]:bg-transparent!"
   >
     <h3 class="text-xl font-bold">Front</h3>
-    {@html frontHtml}
+    {@html data.frontHtml}
     <h3 class="text-xl font-bold">Back</h3>
-    {@html backHtml}
+    {@html data.backHtml}
     <h3 class="text-xl font-bold">Style</h3>
-    {@html styleHtml}
+    {@html data.styleHtml}
   </div>
 </dialog>
