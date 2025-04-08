@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "format": "prettier --write .",
     "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
     "stylegen": "bun x @tailwindcss/cli -i ./src/app.css -o ./src/assets/style.css"
   },
   "devDependencies": {

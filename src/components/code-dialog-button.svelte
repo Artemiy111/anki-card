@@ -1,8 +1,7 @@
 <script lang="ts">
   import { CodeIcon } from 'lucide-svelte'
 
-  let { data }: { data: { frontHtml: string, backHtml: string, styleHtml: string } } = $props()
-
+  let { data }: { data: { frontHtml: string; backHtml: string; styleHtml: string } } = $props()
 </script>
 
 <button

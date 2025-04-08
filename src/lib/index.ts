@@ -17,4 +17,3 @@ export const getCode = async () => {
 
   return { frontHtml, backHtml, styleHtml }
 }
-
