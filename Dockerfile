@@ -16,4 +16,4 @@ RUN bun run build
 
 EXPOSE 80
 
-CMD [ "bun", "run", "preview" ]
+CMD [ "bun", "--env-file=.env", "run", "preview" ]
