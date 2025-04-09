@@ -2,7 +2,5 @@ services:
   default:
     build: .
     ports:  
-      - '4173:4173'
-    expose:
-      - "4173"
+      - '80:4173' 
     restart: unless-stopped
