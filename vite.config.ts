@@ -4,4 +4,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
+  server: {
+    allowedHosts: import.meta.env.HOST ? [import.meta.env.HOST] : undefined
+  }
 })
