@@ -2,5 +2,5 @@ services:
   default:
     build: .
     ports:  
-      - '80:4173' 
+      - '80:80'
     restart: unless-stopped

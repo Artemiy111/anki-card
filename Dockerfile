@@ -14,6 +14,6 @@ RUN bun install
 
 RUN bun run build
 
-EXPOSE 4173
+EXPOSE 80
 
 CMD [ "bun", "run", "preview" ]
