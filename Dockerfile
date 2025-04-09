@@ -14,6 +14,7 @@ RUN bun install
 
 RUN bun run build
 
+ENV PORT=80
 EXPOSE 80
 
-CMD [ "HOST=$HOST", "PORT=80","bun", "--env-file=.env", "run", "preview" ]
+CMD [ "bun", "--env-file=.env", "run", "preview" ]
