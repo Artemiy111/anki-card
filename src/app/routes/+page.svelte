@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { card } from '$lib/card'
+  import { card } from '$lib/shared/lib/card' 
 </script>
 
 <main

@@ -5,7 +5,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   server: {
-    port: import.meta.env.PORT || undefined,
+    host: true,
+    port: 80,
     allowedHosts: true
   }
 })

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ReverseButton from '../components/reverse-button.svelte'
-  import CodeDialogButton from '../components/code-dialog-button.svelte'
-  import '../app.css'
+  import ReverseButton from '$lib/shared/ui/reverse-button.svelte'
+  import CodeDialogButton from '$lib/shared/ui/code-dialog-button.svelte'
+  import '$lib/app/app.css'
 
   let { data, children } = $props()
 </script>
