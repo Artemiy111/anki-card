@@ -1,19 +1,24 @@
-FROM node:22-alpine AS builder
+FROM oven/bun:alpine AS builder
 WORKDIR /app
+
 COPY package*.json ./
 COPY . .
 RUN rm -rf node_modules
-RUN rm package-lock.json
-RUN npm i
-RUN npm run build
-RUN npm prune --production
+RUN rm bun.lock 
+RUN bun i
 
-FROM node:22-alpine
-ENV PORT=80
+RUN bun run build
+
+
+FROM oven/bun:alpine
 WORKDIR /app
-COPY --from=builder /app/.svelte-kit/output build/
+
+ENV PORT=80
+EXPOSE 80
+
+COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
-EXPOSE 80
 ENV NODE_ENV=production
-CMD [ "node", "build/server" ]
+
+CMD [ "bun", "./build" ] 
