@@ -5,16 +5,13 @@
 
   const toggleDark = async () => {
     const res = await fetch('/api/toggle-dark', {
-          method: 'POST',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-          body: JSON.stringify({ isDark: !isDark }),
+      body: JSON.stringify({ isDark: !isDark }),
     })
     await invalidateAll()
-
-
-
 
     const data = (await res.json()) as { isDark: boolean }
     isDark = data.isDark
