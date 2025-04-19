@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "lint-staged": {
+    "*.{js,ts,svelte,css,md,html,json}": "bun run lint:fix"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "svelte-kit sync || echo ''",
+    "prepare": "husky",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check .",
@@ -24,6 +27,8 @@
     "@tailwindcss/cli": "^4.0.17",
     "@tailwindcss/vite": "^4.0.17",
     "@types/bun": "^1.2.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
