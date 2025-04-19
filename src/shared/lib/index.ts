@@ -1,9 +1,8 @@
-// place files you want to import through the `$lib` alias in this folder.
-import frontText from '../assets/front.html?raw'
-import backText from '../assets/back.html?raw'
-import styleText from '../assets/style.css?raw'
-
 import { createHighlighter } from 'shiki'
+
+import frontText from '~/shared/assets/front.html?raw'
+import backText from '~/shared/assets/back.html?raw'
+import styleText from '~/shared/assets/style.css?raw'
 
 export const getCode = async () => {
   const highlighter = await createHighlighter({

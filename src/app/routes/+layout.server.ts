@@ -1,4 +1,4 @@
-import { getCode } from '$lib'
+import { getCode } from '~/shared/lib'
 import type { LayoutServerLoad } from './$types'
 
 const code = await getCode()

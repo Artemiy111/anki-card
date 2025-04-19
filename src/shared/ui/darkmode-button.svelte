@@ -11,10 +11,9 @@
       },
       body: JSON.stringify({ isDark: !isDark }),
     })
-    console.log(res)
     await invalidateAll()
-    // const data = await res.json() as { isDark: boolean }
-    // isDark = data.isDark
+    const data = await res.json() as { isDark: boolean }
+    isDark = data.isDark
   }
 </script>
 
