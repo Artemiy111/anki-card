@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY . .
+COPY svelte.config.node.js svelte.config.js
 RUN rm -rf node_modules
 RUN rm bun.lock 
 RUN bun i
