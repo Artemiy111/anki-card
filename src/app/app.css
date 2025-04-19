@@ -4,8 +4,33 @@
 
 @theme {
   --breakpoint-xs: 30rem;
+
+  --color-primary: var(--color-violet-500);
+  --color-backgound: var(--color-white);
+  --color-card-background: var(--color-slate-50);
+  --color-text: var(--color-black);
+  --color-text-muted: var(--color-slate-500);
+  --color-text-translation: var(--color-slate-600);
+  --color-text-notes: var(--color-slate-800);
+}
+
+:root {
+  @variant dark {
+    --color-backgound: var(--color-slate-800);
+    --color-card-background: var(--color-slate-950);
+    --color-text: var(--color-white);
+    --color-text-muted: var(--color-slate-400);
+    --color-text-translation: var(--color-slate-400);
+    --color-text-notes: var(--color-slate-200);
+  }
 }
 
 html {
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) var(--color-white);
+
+  @variant dark {
+    scrollbar-color: var(--color-slate-600) var(--color-slate-800);
+  }
 }

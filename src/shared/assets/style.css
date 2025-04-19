@@ -1,4 +1,4 @@
-/*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.1.4 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -17,8 +17,10 @@
     --color-slate-400: oklch(0.704 0.04 256.788);
     --color-slate-500: oklch(0.554 0.046 257.417);
     --color-slate-600: oklch(0.446 0.043 257.281);
+    --color-slate-700: oklch(0.372 0.044 257.287);
     --color-slate-800: oklch(0.279 0.041 260.031);
     --color-slate-950: oklch(0.129 0.042 264.695);
+    --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-lg: 32rem;
@@ -44,6 +46,13 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --color-primary: var(--color-violet-500);
+    --color-backgound: var(--color-white);
+    --color-card-background: var(--color-slate-50);
+    --color-text: var(--color-black);
+    --color-text-muted: var(--color-slate-500);
+    --color-text-translation: var(--color-slate-600);
+    --color-text-notes: var(--color-slate-800);
   }
 }
 @layer base {
@@ -327,6 +336,9 @@
   .min-h-60 {
     min-height: calc(var(--spacing) * 60);
   }
+  .min-h-dvh {
+    min-height: 100dvh;
+  }
   .w-1 {
     width: calc(var(--spacing) * 1);
   }
@@ -363,6 +375,9 @@
   .justify-center {
     justify-content: center;
   }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
@@ -384,6 +399,15 @@
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
+  }
+  .bg-backgound {
+    background-color: var(--color-backgound);
+  }
+  .bg-card-background {
+    background-color: var(--color-card-background);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
   }
   .bg-slate-50 {
     background-color: var(--color-slate-50);
@@ -435,6 +459,12 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
+  .text-card-background {
+    color: var(--color-card-background);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
   .text-slate-50 {
     color: var(--color-slate-50);
   }
@@ -446,6 +476,15 @@
   }
   .text-slate-800 {
     color: var(--color-slate-800);
+  }
+  .text-text {
+    color: var(--color-text);
+  }
+  .text-text-muted {
+    color: var(--color-text-muted);
+  }
+  .text-text-notes {
+    color: var(--color-text-notes);
   }
   .text-transparent {
     color: transparent;
@@ -498,6 +537,11 @@
       color: var(--color-slate-600);
     }
   }
+  .peer-checked\:text-text-translation {
+    &:is(:where(.peer):checked ~ *) {
+      color: var(--color-text-translation);
+    }
+  }
   .open\:block {
     &:is([open], :popover-open, :open) {
       display: block;
@@ -539,6 +583,11 @@
   .lg\:w-xl {
     @media (width >= 64rem) {
       width: var(--container-xl);
+    }
+  }
+  .dark\:bg-slate-700 {
+    &:where(.nightMode, .nightMode *) {
+      background-color: var(--color-slate-700);
     }
   }
   .dark\:bg-slate-800 {
@@ -602,8 +651,23 @@
     }
   }
 }
+:root {
+  &:where(.nightMode, .nightMode *) {
+    --color-backgound: var(--color-slate-800);
+    --color-card-background: var(--color-slate-950);
+    --color-text: var(--color-white);
+    --color-text-muted: var(--color-slate-400);
+    --color-text-translation: var(--color-slate-400);
+    --color-text-notes: var(--color-slate-200);
+  }
+}
 html {
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) var(--color-white);
+  &:where(.nightMode, .nightMode *) {
+    scrollbar-color: var(--color-slate-600) var(--color-slate-800);
+  }
 }
 @property --tw-space-y-reverse {
   syntax: '*';

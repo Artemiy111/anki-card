@@ -3,10 +3,10 @@
 </script>
 
 <main
-  class="xs:text-lg absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base dark:bg-slate-800"
+  class="xs:text-lg text-text bg-backgound absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base"
 >
   <div
-    class="flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl bg-slate-50 p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl dark:bg-slate-950 dark:text-white"
+    class="bg-card-background flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl"
   >
     <section class="flex w-full flex-col gap-y-4">
       <h1 class="xs:text-3xl text-center text-2xl font-bold">{@html card.expression}</h1>
@@ -16,7 +16,7 @@
           {@html card.sentence}
         </div>
         {#if card['sentence-audio']}
-          <label class="relative ml-4 cursor-pointer text-violet-500">
+          <div class="text-primary relative ml-4 cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -31,13 +31,18 @@
               ><polygon points="6 3 20 12 6 21 6 3" /></svg
             >
             <div class="hidden">{@html card['sentence-audio']}</div>
-          </label>
+          </div>
         {/if}
       </div>
-      <label for="translation" class=" text-slate-600 dark:text-slate-500">
-        <input type="checkbox" name="" id="translation" class="peer hidden appearance-none" />
+      <label for="translation">
+        <input
+          type="checkbox"
+          name="translation"
+          id="translation"
+          class="peer hidden appearance-none"
+        />
         <div
-          class="cursor-pointer rounded-lg bg-slate-200 text-transparent transition peer-checked:bg-transparent peer-checked:text-slate-600"
+          class="peer-checked:text-text-translation cursor-pointer rounded-lg bg-slate-200 text-transparent transition peer-checked:bg-transparent dark:bg-slate-700"
         >
           {@html card['sentence-translation']}
         </div>
@@ -52,8 +57,8 @@
 
     <section class="flex w-full flex-col gap-y-4">
       {#if card.notes}
-        <div class="grid grid-cols-[min-content_1fr] gap-4 text-slate-800 dark:text-slate-200">
-          <div class="h-full w-1 bg-violet-500"></div>
+        <div class="text-text-notes grid grid-cols-[min-content_1fr] gap-4">
+          <div class="bg-primary h-full w-1"></div>
           {@html card.notes}
         </div>
       {/if}
@@ -63,7 +68,7 @@
       </div>
 
       <div class="">
-        <div class="relative w-fit text-violet-500">
+        <div class="text-primary relative w-fit">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -79,7 +84,9 @@
               d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
             /></svg
           >
-          <span class="absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap text-slate-50">
+          <span
+            class="text-card-background absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap"
+          >
             {@html card.url}
           </span>
         </div>

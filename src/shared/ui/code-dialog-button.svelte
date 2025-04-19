@@ -1,13 +1,14 @@
 <script lang="ts">
   import { CodeIcon } from 'lucide-svelte'
 
-  let { data }: { data: { frontHtml: string; backHtml: string; styleHtml: string } } = $props()
+  let { code: data }: { code: { frontHtml: string; backHtml: string; styleHtml: string } } =
+    $props()
 </script>
 
 <button
   popovertarget="code-dialog"
   popovertargetaction="show"
-  class="cursor-pointer text-violet-500"
+  class="cursor-pointer dark:text-white"
 >
   <CodeIcon />
 </button>

@@ -12,14 +12,14 @@ const config = {
     adapter: adapter(),
     files: {
       routes: 'src/app/routes',
-      lib: 'src',
+      lib: 'src/shared/lib',
       appTemplate: 'src/app/app.html',
-      assets: 'public'
+      assets: 'public',
     },
     alias: {
-      '@/*': 'src/*'
-    }
-  }
+      '~/*': 'src/*',
+    },
+  },
 }
 
 export default config

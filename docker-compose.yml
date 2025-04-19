@@ -1,7 +1,7 @@
 services:
   default:
     build: .
-    ports:  
+    ports:
       - '80:80'
     env_file:
       - .env

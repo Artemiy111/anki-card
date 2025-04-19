@@ -6,7 +6,7 @@
   let isBack = $derived(page.url.pathname === '/back')
 </script>
 
-<a href={isBack ? '/' : '/back'} class={['cursor-pointer text-violet-500']}>
+<a href={isBack ? '/' : '/back'} class="cursor-pointer dark:text-white">
   {#if isBack}
     <ArrowBigLeftIcon />
   {:else}
