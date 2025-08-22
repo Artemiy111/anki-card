@@ -7,7 +7,7 @@
     "*.{js,ts,svelte,css,md,html,json}": "bun run lint:fix"
   },
   "scripts": {
-    "dev": "vite dev",
+    "dev": "vite dev --port 3000",
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "husky",
@@ -18,29 +18,29 @@
     "stylegen": "bun x @tailwindcss/cli -i ./src/app/app.css -o ./src/shared/assets/style.css"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^5.0.0",
-    "@sveltejs/adapter-node": "^5.2.12",
-    "@sveltejs/adapter-static": "^3.0.8",
-    "@sveltejs/adapter-vercel": "^5.7.0",
-    "@sveltejs/kit": "^2.20.2",
-    "@sveltejs/vite-plugin-svelte": "^5.0.3",
-    "@tailwindcss/cli": "^4.0.17",
-    "@tailwindcss/vite": "^4.0.17",
-    "@types/bun": "^1.2.9",
+    "@sveltejs/adapter-auto": "^6.1.0",
+    "@sveltejs/adapter-node": "^5.3.1",
+    "@sveltejs/adapter-static": "^3.0.9",
+    "@sveltejs/adapter-vercel": "^5.10.2",
+    "@sveltejs/kit": "^2.36.1",
+    "@sveltejs/vite-plugin-svelte": "^6.1.3",
+    "@tailwindcss/cli": "^4.1.12",
+    "@tailwindcss/vite": "^4.1.12",
+    "@types/bun": "^1.2.20",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.1",
-    "prettier": "^3.5.3",
-    "prettier-plugin-svelte": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "svelte": "^5.25.3",
-    "svelte-check": "^4.1.5",
-    "tailwindcss": "^4.0.17",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.3"
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "svelte": "^5.38.2",
+    "svelte-check": "^4.3.1",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3"
   },
   "dependencies": {
-    "lucide-svelte": "^0.486.0",
-    "shiki": "^3.2.1",
-    "yanki-connect": "^2.2.1"
+    "lucide-svelte": "^0.540.0",
+    "shiki": "^3.11.0",
+    "yanki-connect": "^3.0.3"
   }
 }

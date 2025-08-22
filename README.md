@@ -1,0 +1,845 @@
+# Шаблон для карточек Anki
+
+- Поддержка светлой и тёмной темы
+- Просто скопируйте шаблон и стили
+
+## Front
+
+![front](./public/screen-1,png)
+
+```html
+<!doctype html>
+<main
+  class="xs:text-lg text-text bg-backgound absolute inset-x-0 top-0 grid h-max min-h-dvh w-full items-center justify-center py-16 text-base"
+>
+  <div
+    class="bg-card-background text-text flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl"
+  >
+    <section class="flex w-full flex-col gap-y-4">
+      <div class="relative">
+        {{#expression-audio}}
+        <h1 class="xs:text-3xl mx-8 text-center text-2xl font-bold">{{expression}}</h1>
+        <div class="text-primary absolute top-2 right-0 cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-play-icon lucide-play"
+          >
+            <polygon points="6 3 20 12 6 21 6 3" />
+          </svg>
+          <div class="hidden">{{expression-audio}}</div>
+        </div>
+        {{/expression-audio}}
+        <!--  -->
+        {{^expression-audio}}
+        <h1 class="xs:text-3xl text-center text-2xl font-bold">{{expression}}</h1>
+        {{/expression-audio}}
+      </div>
+      <div class="text-text-muted">
+        <span>{{cloze-prefix}}</span>
+        <span class="text-primary">{{cloze-body}}</span>
+        <span>{{cloze-suffix}}</span>
+      </div>
+    </section>
+  </div>
+</main>
+```
+
+## Back
+
+![back](./public/screen-2,png)
+
+```
+<!doctype html>
+<main
+  class="xs:text-lg text-text bg-backgound absolute inset-x-0 top-0 grid h-max w-full items-center justify-center py-16 text-base"
+>
+  <div
+    class="bg-card-background flex min-h-60 w-[min(100dvw-8*var(--spacing),var(--container-lg))] flex-col items-center gap-4 rounded-4xl p-8 pt-7 sm:p-12 sm:pt-10 lg:w-xl"
+  >
+    <section class="flex w-full flex-col gap-y-4">
+      <h1 class="xs:text-3xl text-center text-2xl font-bold">{{expression}}</h1>
+
+      <div class="grid grid-cols-[1fr_min-content]">
+        <div class="dark:text-slate-200">{{sentence}}</div>
+        {{#sentence-audio}}
+        <div class="text-primary relative ml-4 cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-play-icon lucide-play"
+          >
+            <polygon points="6 3 20 12 6 21 6 3" />
+          </svg>
+          <div class="hidden">{{sentence-audio}}</div>
+        </div>
+        {{/sentence-audio}}
+      </div>
+      <label for="translation" class="text-slate-600 dark:text-slate-500">
+        <input
+          type="checkbox"
+          name="transition"
+          id="translation"
+          class="peer hidden appearance-none"
+        />
+        <div
+          class="peer-checked:text-text-translation cursor-pointer rounded-lg bg-slate-200 text-transparent transition peer-checked:bg-transparent dark:bg-slate-700"
+        >
+          {{sentence-translation}}
+        </div>
+      </label>
+    </section>
+
+    {{#image}}
+    <div class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
+    {{/image}}
+
+    <section class="flex w-full flex-col gap-y-4">
+      {{#notes}}
+      <div class="text-text-notes grid grid-cols-[min-content_1fr] gap-4">
+        <div class="bg-primary h-full w-1"></div>
+        {{notes}}
+      </div>
+      {{/notes}}
+
+      <div class="xs:text-base w-full p-0 text-sm">{{meaning}}</div>
+
+      <div class="">
+        <div class="text-primary relative w-fit">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-link-icon lucide-link"
+          >
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+          </svg>
+          <span
+            class="text-card-background absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap"
+          >
+            {{url}}
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+```
+
+### Style
+
+```
+/*! tailwindcss v4.1.4 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root,
+  :host {
+    --font-sans:
+      ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+      monospace;
+    --color-violet-500: oklch(0.606 0.25 292.717);
+    --color-slate-50: oklch(0.984 0.003 247.858);
+    --color-slate-100: oklch(0.968 0.007 247.896);
+    --color-slate-200: oklch(0.929 0.013 255.508);
+    --color-slate-400: oklch(0.704 0.04 256.788);
+    --color-slate-500: oklch(0.554 0.046 257.417);
+    --color-slate-600: oklch(0.446 0.043 257.281);
+    --color-slate-700: oklch(0.372 0.044 257.287);
+    --color-slate-800: oklch(0.279 0.041 260.031);
+    --color-slate-950: oklch(0.129 0.042 264.695);
+    --color-black: #000;
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --container-lg: 32rem;
+    --container-xl: 36rem;
+    --container-2xl: 42rem;
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --font-weight-bold: 700;
+    --radius-lg: 0.5rem;
+    --radius-3xl: 1.5rem;
+    --radius-4xl: 2rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+    --color-primary: var(--color-violet-500);
+    --color-backgound: var(--color-white);
+    --color-card-background: var(--color-slate-50);
+    --color-text: var(--color-black);
+    --color-text-muted: var(--color-slate-500);
+    --color-text-translation: var(--color-slate-600);
+    --color-text-notes: var(--color-slate-800);
+  }
+}
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html,
+  :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(
+      --default-font-family,
+      ui-sans-serif,
+      system-ui,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      'Noto Color Emoji'
+    );
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b,
+  strong {
+    font-weight: bolder;
+  }
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(
+      --default-mono-font-family,
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      'Liberation Mono',
+      'Courier New',
+      monospace
+    );
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol,
+  ul,
+  menu {
+    list-style: none;
+  }
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    display: block;
+    vertical-align: middle;
+  }
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  button,
+  input,
+  select,
+  optgroup,
+  textarea,
+  ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button)) or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentColor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentColor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit,
+  ::-webkit-datetime-edit-year-field,
+  ::-webkit-datetime-edit-month-field,
+  ::-webkit-datetime-edit-day-field,
+  ::-webkit-datetime-edit-hour-field,
+  ::-webkit-datetime-edit-minute-field,
+  ::-webkit-datetime-edit-second-field,
+  ::-webkit-datetime-edit-millisecond-field,
+  ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button,
+  input:where([type='button'], [type='reset'], [type='submit']),
+  ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden='until-found'])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .absolute {
+    position: absolute;
+  }
+  .fixed {
+    position: fixed;
+  }
+  .relative {
+    position: relative;
+  }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
+  }
+  .inset-x-0 {
+    inset-inline: calc(var(--spacing) * 0);
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .top-2 {
+    top: calc(var(--spacing) * 2);
+  }
+  .top-4 {
+    top: calc(var(--spacing) * 4);
+  }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
+  .right-\[calc\(8\*var\(--spacing\)\+100\%-100dvw\)\] {
+    right: calc(8 * var(--spacing) + 100% - 100dvw);
+  }
+  .bottom-4 {
+    bottom: calc(var(--spacing) * 4);
+  }
+  .z-1 {
+    z-index: 1;
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .mx-8 {
+    margin-inline: calc(var(--spacing) * 8);
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .ml-4 {
+    margin-left: calc(var(--spacing) * 4);
+  }
+  .contents {
+    display: contents;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .hidden {
+    display: none;
+  }
+  .h-\[500px\] {
+    height: 500px;
+  }
+  .h-\[calc\(100dvh-8\*var\(--spacing\)\)\] {
+    height: calc(100dvh - 8 * var(--spacing));
+  }
+  .h-full {
+    height: 100%;
+  }
+  .h-max {
+    height: max-content;
+  }
+  .min-h-60 {
+    min-height: calc(var(--spacing) * 60);
+  }
+  .min-h-dvh {
+    min-height: 100dvh;
+  }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
+  }
+  .w-2xl {
+    width: var(--container-2xl);
+  }
+  .w-\[min\(100dvw-8\*var\(--spacing\)\,var\(--container-lg\)\)\] {
+    width: min(100dvw - 8 * var(--spacing), var(--container-lg));
+  }
+  .w-fit {
+    width: fit-content;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .appearance-none {
+    appearance: none;
+  }
+  .grid-cols-\[1fr_min-content\] {
+    grid-template-columns: 1fr min-content;
+  }
+  .grid-cols-\[min-content_1fr\] {
+    grid-template-columns: min-content 1fr;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
+  .space-y-4 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .gap-y-4 {
+    row-gap: calc(var(--spacing) * 4);
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .rounded-4xl {
+    border-radius: var(--radius-4xl);
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .bg-backgound {
+    background-color: var(--color-backgound);
+  }
+  .bg-card-background {
+    background-color: var(--color-card-background);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-slate-50 {
+    background-color: var(--color-slate-50);
+  }
+  .bg-slate-100 {
+    background-color: var(--color-slate-100);
+  }
+  .bg-slate-200 {
+    background-color: var(--color-slate-200);
+  }
+  .bg-violet-500 {
+    background-color: var(--color-violet-500);
+  }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
+  }
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
+  .py-16 {
+    padding-block: calc(var(--spacing) * 16);
+  }
+  .pt-7 {
+    padding-top: calc(var(--spacing) * 7);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
+  .text-card-background {
+    color: var(--color-card-background);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-slate-50 {
+    color: var(--color-slate-50);
+  }
+  .text-slate-500 {
+    color: var(--color-slate-500);
+  }
+  .text-slate-600 {
+    color: var(--color-slate-600);
+  }
+  .text-slate-800 {
+    color: var(--color-slate-800);
+  }
+  .text-text {
+    color: var(--color-text);
+  }
+  .text-text-muted {
+    color: var(--color-text-muted);
+  }
+  .text-text-notes {
+    color: var(--color-text-notes);
+  }
+  .text-transparent {
+    color: transparent;
+  }
+  .text-violet-500 {
+    color: var(--color-violet-500);
+  }
+  .transition {
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      outline-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      --tw-gradient-from,
+      --tw-gradient-via,
+      --tw-gradient-to,
+      opacity,
+      box-shadow,
+      transform,
+      translate,
+      scale,
+      rotate,
+      filter,
+      -webkit-backdrop-filter,
+      backdrop-filter;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .\[sound\:yomitan_audio_2025-02-26-09-00-30-496\.wav\] {
+    sound: yomitan audio 2025-02-26-09-00-30-496wav;
+  }
+  .\[sound\:¿Por_qué_la_ropa_mojada__381000_PJEKijnR\.mp3\] {
+    sound: ¿Por qué la ropa mojada 381000 PJEKijnR.mp3;
+  }
+  .\*\:bg-transparent\! {
+    :is(& > *) {
+      background-color: transparent !important;
+    }
+  }
+  .peer-checked\:bg-transparent {
+    &:is(:where(.peer):checked ~ *) {
+      background-color: transparent;
+    }
+  }
+  .peer-checked\:text-slate-600 {
+    &:is(:where(.peer):checked ~ *) {
+      color: var(--color-slate-600);
+    }
+  }
+  .peer-checked\:text-text-translation {
+    &:is(:where(.peer):checked ~ *) {
+      color: var(--color-text-translation);
+    }
+  }
+  .open\:block {
+    &:is([open], :popover-open, :open) {
+      display: block;
+    }
+  }
+  .xs\:text-3xl {
+    @media (width >= 30rem) {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+  }
+  .xs\:text-base {
+    @media (width >= 30rem) {
+      font-size: var(--text-base);
+      line-height: var(--tw-leading, var(--text-base--line-height));
+    }
+  }
+  .xs\:text-lg {
+    @media (width >= 30rem) {
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .sm\:p-12 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 12);
+    }
+  }
+  .sm\:pt-10 {
+    @media (width >= 40rem) {
+      padding-top: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:right-\[calc\(50\%-var\(--container-xl\)\/2-24px-50px\)\] {
+    @media (width >= 64rem) {
+      right: calc(50% - var(--container-xl) / 2 - 24px - 50px);
+    }
+  }
+  .lg\:w-xl {
+    @media (width >= 64rem) {
+      width: var(--container-xl);
+    }
+  }
+  .dark\:bg-slate-700 {
+    &:where(.nightMode, .nightMode *) {
+      background-color: var(--color-slate-700);
+    }
+  }
+  .dark\:bg-slate-800 {
+    &:where(.nightMode, .nightMode *) {
+      background-color: var(--color-slate-800);
+    }
+  }
+  .dark\:bg-slate-950 {
+    &:where(.nightMode, .nightMode *) {
+      background-color: var(--color-slate-950);
+    }
+  }
+  .dark\:text-slate-200 {
+    &:where(.nightMode, .nightMode *) {
+      color: var(--color-slate-200);
+    }
+  }
+  .dark\:text-slate-400 {
+    &:where(.nightMode, .nightMode *) {
+      color: var(--color-slate-400);
+    }
+  }
+  .dark\:text-slate-500 {
+    &:where(.nightMode, .nightMode *) {
+      color: var(--color-slate-500);
+    }
+  }
+  .dark\:text-white {
+    &:where(.nightMode, .nightMode *) {
+      color: var(--color-white);
+    }
+  }
+  .\[\&\>img\]\:w-full {
+    & > img {
+      width: 100%;
+    }
+  }
+  .\[\&\>img\]\:rounded-3xl {
+    & > img {
+      border-radius: var(--radius-3xl);
+    }
+  }
+  .\[\&\>pre\]\:h-max {
+    & > pre {
+      height: max-content;
+    }
+  }
+  .\[\&\>pre\]\:w-full {
+    & > pre {
+      width: 100%;
+    }
+  }
+  .\[\&\>pre\]\:overflow-auto {
+    & > pre {
+      overflow: auto;
+    }
+  }
+  .\[\&\>pre\]\:bg-transparent\! {
+    & > pre {
+      background-color: transparent !important;
+    }
+  }
+}
+:root {
+  &:where(.nightMode, .nightMode *) {
+    --color-backgound: var(--color-slate-800);
+    --color-card-background: var(--color-slate-950);
+    --color-text: var(--color-white);
+    --color-text-muted: var(--color-slate-400);
+    --color-text-translation: var(--color-slate-400);
+    --color-text-notes: var(--color-slate-200);
+  }
+}
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-400) var(--color-white);
+  &:where(.nightMode, .nightMode *) {
+    scrollbar-color: var(--color-slate-600) var(--color-slate-800);
+  }
+}
+@property --tw-space-y-reverse {
+  syntax: '*';
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-font-weight {
+  syntax: '*';
+  inherits: false;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
+    ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
+    *,
+    ::before,
+    ::after,
+    ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-font-weight: initial;
+    }
+  }
+}
+```
