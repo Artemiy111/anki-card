@@ -5,7 +5,7 @@
 
 ## Front
 
-![front](./public/screen-1,png)
+![front](https://raw.githubusercontent.com/Artemiy111/anki-card/refs/heads/main/public/screen-1.png)
 
 ```html
 <!doctype html>
@@ -54,7 +54,7 @@
 
 ## Back
 
-![back](./public/screen-2,png)
+![back](https://raw.githubusercontent.com/Artemiy111/anki-card/refs/heads/main/public/screen-2.png)
 
 ```
 <!doctype html>
