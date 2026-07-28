@@ -30,7 +30,12 @@
         </div>
         {{/sentence-audio}}
       </div>
-      <label for="translation" class="text-slate-600 dark:text-slate-500">
+      {{#sentence-translation}}
+      <label
+        for="translation"
+        data-field="sentence-translation"
+        class="text-slate-600 dark:text-slate-500"
+      >
         <input
           type="checkbox"
           name="transition"
@@ -43,23 +48,33 @@
           {{sentence-translation}}
         </div>
       </label>
+      {{/sentence-translation}}
     </section>
 
     {{#image}}
-    <div class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
+    <div data-field="image" class="[&>img]:w-full [&>img]:rounded-3xl">{{image}}</div>
     {{/image}}
 
     <section class="flex w-full flex-col gap-y-4">
       {{#notes}}
-      <div class="text-text-notes grid grid-cols-[min-content_1fr] gap-4">
+      <div data-field="notes" class="text-text-notes grid grid-cols-[min-content_1fr] gap-4">
         <div class="bg-primary h-full w-1"></div>
         {{notes}}
       </div>
-      {{/notes}}
+      {{/notes}} {{#conjugation}}
+      <div data-field="conjugation" class="text-text-muted xs:text-sm w-full text-xs">
+        {{conjugation}}
+      </div>
+      {{/conjugation}} {{#frequencies}}
+      <div data-field="frequencies" class="text-text-muted xs:text-sm w-full text-xs">
+        {{frequencies}}
+      </div>
+      {{/frequencies}}
 
       <div class="xs:text-base w-full p-0 text-sm">{{meaning}}</div>
 
-      <div class="">
+      {{#url}}
+      <div>
         <div class="text-primary relative w-fit">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -77,12 +92,14 @@
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </svg>
           <span
+            data-field="url"
             class="text-card-background absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap"
           >
             {{url}}
           </span>
         </div>
       </div>
+      {{/url}}
     </section>
   </div>
 </main>
