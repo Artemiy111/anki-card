@@ -1,17 +1,22 @@
-export type Card = {
-  expression: string
-  'expression-audio': string
-  meaning: string
-  sentence: string
-  'sentence-audio': string
-  'sentence-translation': string
-  image: string
-  url: string
-  notes: string
-  'cloze-prefix': string
-  'cloze-body': string
-  'cloze-suffix': string
-}
+export const ARTMINER_FIELDS = [
+  'expression',
+  'expression-audio',
+  'meaning',
+  'sentence',
+  'sentence-audio',
+  'sentence-translation',
+  'image',
+  'url',
+  'notes',
+  'cloze-prefix',
+  'cloze-body',
+  'cloze-suffix',
+  'conjugation',
+  'frequencies',
+] as const
+
+export type ArtMinerField = (typeof ARTMINER_FIELDS)[number]
+export type Card = Record<ArtMinerField, string>
 
 export const card: Card = {
   expression: 'dejar',
@@ -63,4 +68,6 @@ export const card: Card = {
   'cloze-prefix': 'Esta práctica ',
   'cloze-body': 'dejaba',
   'cloze-suffix': ' al',
+  conjugation: 'pretérito imperfecto, tercera persona singular',
+  frequencies: 'Frecuencia: 233',
 }

@@ -34,32 +34,46 @@
           </div>
         {/if}
       </div>
-      <label for="translation">
-        <input
-          type="checkbox"
-          name="translation"
-          id="translation"
-          class="peer hidden appearance-none"
-        />
-        <div
-          class="peer-checked:text-text-translation cursor-pointer rounded-lg bg-slate-200 text-transparent transition peer-checked:bg-transparent dark:bg-slate-700"
-        >
-          {@html card['sentence-translation']}
-        </div>
-      </label>
+      {#if card['sentence-translation']}
+        <label for="translation" data-field="sentence-translation">
+          <input
+            type="checkbox"
+            name="translation"
+            id="translation"
+            class="peer hidden appearance-none"
+          />
+          <div
+            class="peer-checked:text-text-translation cursor-pointer rounded-lg bg-slate-200 text-transparent transition peer-checked:bg-transparent dark:bg-slate-700"
+          >
+            {@html card['sentence-translation']}
+          </div>
+        </label>
+      {/if}
     </section>
 
     {#if card.image}
-      <div class="[&>img]:w-full [&>img]:rounded-3xl">
+      <div data-field="image" class="[&>img]:w-full [&>img]:rounded-3xl">
         {@html card.image}
       </div>
     {/if}
 
     <section class="flex w-full flex-col gap-y-4">
       {#if card.notes}
-        <div class="text-text-notes grid grid-cols-[min-content_1fr] gap-4">
+        <div data-field="notes" class="text-text-notes grid grid-cols-[min-content_1fr] gap-4">
           <div class="bg-primary h-full w-1"></div>
           {@html card.notes}
+        </div>
+      {/if}
+
+      {#if card.conjugation}
+        <div data-field="conjugation" class="text-text-muted xs:text-sm w-full text-xs">
+          {@html card.conjugation}
+        </div>
+      {/if}
+
+      {#if card.frequencies}
+        <div data-field="frequencies" class="text-text-muted xs:text-sm w-full text-xs">
+          {@html card.frequencies}
         </div>
       {/if}
 
@@ -67,7 +81,7 @@
         {@html card.meaning}
       </div>
 
-      <div class="">
+      {#if card.url}
         <div class="text-primary relative w-fit">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -85,12 +99,13 @@
             /></svg
           >
           <span
+            data-field="url"
             class="text-card-background absolute inset-0 z-1 w-full overflow-hidden whitespace-nowrap"
           >
             {@html card.url}
           </span>
         </div>
-      </div>
+      {/if}
     </section>
   </div>
 </main>
