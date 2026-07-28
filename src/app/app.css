@@ -40,3 +40,31 @@ html {
     scrollbar-color: var(--color-slate-600) var(--color-slate-800);
   }
 }
+
+.anki-audio-control .replay-button {
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: currentColor;
+}
+
+.anki-audio-control .replay-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.anki-audio-control .replay-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.anki-audio-control .replay-button svg path {
+  fill: currentColor;
+}
+
+.anki-audio-control .replay-button svg circle {
+  fill: transparent;
+  stroke: none;
+}
