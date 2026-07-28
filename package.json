@@ -16,7 +16,8 @@
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
     "stylegen": "bun x @tailwindcss/cli -i ./src/app/app.css -o ./src/shared/assets/style.css",
-    "stylegen:check": "bun run scripts/check-stylegen.ts"
+    "stylegen:check": "bun run scripts/check-stylegen.ts",
+    "test": "bun test"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^7.0.1",
