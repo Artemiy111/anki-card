@@ -1,25 +1,25 @@
-/*! tailwindcss v4.1.4 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.3.3 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
   :root,
   :host {
     --font-sans:
-      ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial,
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-mono:
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
       monospace;
-    --color-violet-500: oklch(0.606 0.25 292.717);
-    --color-slate-50: oklch(0.984 0.003 247.858);
-    --color-slate-100: oklch(0.968 0.007 247.896);
-    --color-slate-200: oklch(0.929 0.013 255.508);
-    --color-slate-400: oklch(0.704 0.04 256.788);
-    --color-slate-500: oklch(0.554 0.046 257.417);
-    --color-slate-600: oklch(0.446 0.043 257.281);
-    --color-slate-700: oklch(0.372 0.044 257.287);
-    --color-slate-800: oklch(0.279 0.041 260.031);
-    --color-slate-950: oklch(0.129 0.042 264.695);
+    --color-violet-500: oklch(60.6% 0.25 292.717);
+    --color-slate-50: oklch(98.4% 0.003 247.858);
+    --color-slate-100: oklch(96.8% 0.007 247.896);
+    --color-slate-200: oklch(92.9% 0.013 255.508);
+    --color-slate-400: oklch(70.4% 0.04 256.788);
+    --color-slate-500: oklch(55.4% 0.046 257.417);
+    --color-slate-600: oklch(44.6% 0.043 257.281);
+    --color-slate-700: oklch(37.2% 0.044 257.287);
+    --color-slate-800: oklch(27.9% 0.041 260.031);
+    --color-slate-950: oklch(12.9% 0.042 264.695);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -73,8 +73,13 @@
     tab-size: 4;
     font-family: var(
       --default-font-family,
-      ui-sans-serif,
-      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      'Noto Sans',
+      Arial,
       sans-serif,
       'Apple Color Emoji',
       'Segoe UI Emoji',
@@ -152,7 +157,7 @@
     border-color: inherit;
     border-collapse: collapse;
   }
-  :-moz-focusring {
+  :-moz-focusring:where(:not(iframe)) {
     outline: auto;
   }
   progress {
@@ -211,9 +216,9 @@
   }
   @supports (not (-webkit-appearance: -apple-pay-button)) or (contain-intrinsic-size: 1px) {
     ::placeholder {
-      color: currentColor;
+      color: currentcolor;
       @supports (color: color-mix(in lab, red, red)) {
-        color: color-mix(in oklab, currentColor 50%, transparent);
+        color: color-mix(in oklab, currentcolor 50%, transparent);
       }
     }
   }
@@ -244,6 +249,9 @@
   ::-webkit-datetime-edit-meridiem-field {
     padding-block: 0;
   }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
   :-moz-ui-invalid {
     box-shadow: none;
   }
@@ -271,13 +279,13 @@
     position: relative;
   }
   .inset-0 {
-    inset: calc(var(--spacing) * 0);
+    inset: 0px;
   }
   .inset-x-0 {
-    inset-inline: calc(var(--spacing) * 0);
+    inset-inline: 0px;
   }
   .top-0 {
-    top: calc(var(--spacing) * 0);
+    top: 0px;
   }
   .top-2 {
     top: calc(var(--spacing) * 2);
@@ -286,7 +294,7 @@
     top: calc(var(--spacing) * 4);
   }
   .right-0 {
-    right: calc(var(--spacing) * 0);
+    right: 0px;
   }
   .right-\[calc\(8\*var\(--spacing\)\+100\%-100dvw\)\] {
     right: calc(8 * var(--spacing) + 100% - 100dvw);
@@ -321,6 +329,9 @@
   .hidden {
     display: none;
   }
+  .table {
+    display: table;
+  }
   .h-\[500px\] {
     height: 500px;
   }
@@ -340,7 +351,7 @@
     min-height: 100dvh;
   }
   .w-1 {
-    width: calc(var(--spacing) * 1);
+    width: var(--spacing);
   }
   .w-2xl {
     width: var(--container-2xl);
@@ -354,8 +365,14 @@
   .w-full {
     width: 100%;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
   }
   .appearance-none {
     appearance: none;
@@ -372,6 +389,9 @@
   .items-center {
     align-items: center;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .justify-center {
     justify-content: center;
   }
@@ -381,12 +401,10 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
-  .space-y-4 {
-    :where(& > :not(:last-child)) {
-      --tw-space-y-reverse: 0;
-      margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
-      margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
-    }
+  :where(.space-y-4 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
   }
   .gap-y-4 {
     row-gap: calc(var(--spacing) * 4);
@@ -399,6 +417,10 @@
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
   }
   .bg-backgound {
     background-color: var(--color-backgound);
@@ -422,7 +444,7 @@
     background-color: var(--color-violet-500);
   }
   .p-0 {
-    padding: calc(var(--spacing) * 0);
+    padding: 0px;
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
@@ -492,6 +514,13 @@
   .text-violet-500 {
     color: var(--color-violet-500);
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
   .transition {
     transition-property:
       color,
@@ -512,7 +541,11 @@
       rotate,
       filter,
       -webkit-backdrop-filter,
-      backdrop-filter;
+      backdrop-filter,
+      display,
+      content-visibility,
+      overlay,
+      pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -522,144 +555,86 @@
   .\[sound\:¿Por_qué_la_ropa_mojada__381000_PJEKijnR\.mp3\] {
     sound: ¿Por qué la ropa mojada 381000 PJEKijnR.mp3;
   }
-  .\*\:bg-transparent\! {
-    :is(& > *) {
-      background-color: transparent !important;
-    }
+  :is(.\*\:bg-transparent\! > *) {
+    background-color: transparent !important;
   }
-  .peer-checked\:bg-transparent {
-    &:is(:where(.peer):checked ~ *) {
-      background-color: transparent;
-    }
+  .peer-checked\:bg-transparent:is(:where(.peer):checked ~ *) {
+    background-color: transparent;
   }
-  .peer-checked\:text-slate-600 {
-    &:is(:where(.peer):checked ~ *) {
-      color: var(--color-slate-600);
-    }
+  .peer-checked\:text-text-translation:is(:where(.peer):checked ~ *) {
+    color: var(--color-text-translation);
   }
-  .peer-checked\:text-text-translation {
-    &:is(:where(.peer):checked ~ *) {
-      color: var(--color-text-translation);
-    }
+  .open\:block:is([open], :popover-open, :open) {
+    display: block;
   }
-  .open\:block {
-    &:is([open], :popover-open, :open) {
-      display: block;
-    }
-  }
-  .xs\:text-3xl {
-    @media (width >= 30rem) {
+  @media (width >= 30rem) {
+    .xs\:text-3xl {
       font-size: var(--text-3xl);
       line-height: var(--tw-leading, var(--text-3xl--line-height));
     }
-  }
-  .xs\:text-base {
-    @media (width >= 30rem) {
+    .xs\:text-base {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
     }
-  }
-  .xs\:text-lg {
-    @media (width >= 30rem) {
+    .xs\:text-lg {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
-  .sm\:p-12 {
-    @media (width >= 40rem) {
+  @media (width >= 40rem) {
+    .sm\:p-12 {
       padding: calc(var(--spacing) * 12);
     }
-  }
-  .sm\:pt-10 {
-    @media (width >= 40rem) {
+    .sm\:pt-10 {
       padding-top: calc(var(--spacing) * 10);
     }
   }
-  .lg\:right-\[calc\(50\%-var\(--container-xl\)\/2-24px-50px\)\] {
-    @media (width >= 64rem) {
+  @media (width >= 64rem) {
+    .lg\:right-\[calc\(50\%-var\(--container-xl\)\/2-24px-50px\)\] {
       right: calc(50% - var(--container-xl) / 2 - 24px - 50px);
     }
-  }
-  .lg\:w-xl {
-    @media (width >= 64rem) {
+    .lg\:w-xl {
       width: var(--container-xl);
     }
   }
-  .dark\:bg-slate-700 {
-    &:where(.nightMode, .nightMode *) {
-      background-color: var(--color-slate-700);
-    }
+  .dark\:bg-slate-700:where(.nightMode, .nightMode *) {
+    background-color: var(--color-slate-700);
   }
-  .dark\:bg-slate-800 {
-    &:where(.nightMode, .nightMode *) {
-      background-color: var(--color-slate-800);
-    }
+  .dark\:text-slate-200:where(.nightMode, .nightMode *) {
+    color: var(--color-slate-200);
   }
-  .dark\:bg-slate-950 {
-    &:where(.nightMode, .nightMode *) {
-      background-color: var(--color-slate-950);
-    }
+  .dark\:text-slate-500:where(.nightMode, .nightMode *) {
+    color: var(--color-slate-500);
   }
-  .dark\:text-slate-200 {
-    &:where(.nightMode, .nightMode *) {
-      color: var(--color-slate-200);
-    }
+  .dark\:text-white:where(.nightMode, .nightMode *) {
+    color: var(--color-white);
   }
-  .dark\:text-slate-400 {
-    &:where(.nightMode, .nightMode *) {
-      color: var(--color-slate-400);
-    }
+  .\[\&\>div\>pre\]\:h-max > div > pre {
+    height: max-content;
   }
-  .dark\:text-slate-500 {
-    &:where(.nightMode, .nightMode *) {
-      color: var(--color-slate-500);
-    }
+  .\[\&\>div\>pre\]\:w-full > div > pre {
+    width: 100%;
   }
-  .dark\:text-white {
-    &:where(.nightMode, .nightMode *) {
-      color: var(--color-white);
-    }
+  .\[\&\>div\>pre\]\:overflow-auto > div > pre {
+    overflow: auto;
   }
-  .\[\&\>img\]\:w-full {
-    & > img {
-      width: 100%;
-    }
+  .\[\&\>img\]\:w-full > img {
+    width: 100%;
   }
-  .\[\&\>img\]\:rounded-3xl {
-    & > img {
-      border-radius: var(--radius-3xl);
-    }
+  .\[\&\>img\]\:rounded-3xl > img {
+    border-radius: var(--radius-3xl);
   }
-  .\[\&\>pre\]\:h-max {
-    & > pre {
-      height: max-content;
-    }
-  }
-  .\[\&\>pre\]\:w-full {
-    & > pre {
-      width: 100%;
-    }
-  }
-  .\[\&\>pre\]\:overflow-auto {
-    & > pre {
-      overflow: auto;
-    }
-  }
-  .\[\&\>pre\]\:bg-transparent\! {
-    & > pre {
-      background-color: transparent !important;
-    }
+  .\[\&\>pre\]\:bg-transparent\! > pre {
+    background-color: transparent !important;
   }
 }
-:root {
-  &:where(.nightMode, .nightMode *) {
-    --color-backgound: var(--color-slate-800);
-    --color-card-background: var(--color-slate-950);
-    --color-text: var(--color-white);
-    --color-text-muted: var(--color-slate-400);
-    --color-text-translation: var(--color-slate-400);
-    --color-text-notes: var(--color-slate-200);
-  }
+:root:where(.nightMode, .nightMode *) {
+  --color-backgound: var(--color-slate-800);
+  --color-card-background: var(--color-slate-950);
+  --color-text: var(--color-white);
+  --color-text-muted: var(--color-slate-400);
+  --color-text-translation: var(--color-slate-400);
+  --color-text-notes: var(--color-slate-200);
 }
 html {
   scrollbar-gutter: stable;
@@ -674,9 +649,19 @@ html {
   inherits: false;
   initial-value: 0;
 }
+@property --tw-border-style {
+  syntax: '*';
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-font-weight {
   syntax: '*';
   inherits: false;
+}
+@property --tw-outline-style {
+  syntax: '*';
+  inherits: false;
+  initial-value: solid;
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
@@ -686,7 +671,9 @@ html {
     ::after,
     ::backdrop {
       --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
       --tw-font-weight: initial;
+      --tw-outline-style: solid;
     }
   }
 }
