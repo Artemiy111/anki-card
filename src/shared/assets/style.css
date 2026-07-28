@@ -225,9 +225,6 @@
   .relative {
     position: relative;
   }
-  .inset-0 {
-    inset: 0px;
-  }
   .inset-x-0 {
     inset-inline: 0px;
   }
@@ -248,9 +245,6 @@
   }
   .bottom-4 {
     bottom: calc(var(--spacing) * 4);
-  }
-  .z-1 {
-    z-index: 1;
   }
   .z-10 {
     z-index: 10;
@@ -300,9 +294,6 @@
   .w-\[min\(100dvw-8\*var\(--spacing\)\,var\(--container-lg\)\)\] {
     width: min(100dvw - 8 * var(--spacing), var(--container-lg));
   }
-  .w-fit {
-    width: fit-content;
-  }
   .w-full {
     width: 100%;
   }
@@ -343,9 +334,6 @@
   }
   .gap-y-4 {
     row-gap: calc(var(--spacing) * 4);
-  }
-  .overflow-hidden {
-    overflow: hidden;
   }
   .rounded-4xl {
     border-radius: var(--radius-4xl);
@@ -409,12 +397,6 @@
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
-  }
-  .whitespace-nowrap {
-    white-space: nowrap;
-  }
-  .text-card-background {
-    color: var(--color-card-background);
   }
   .text-primary {
     color: var(--color-primary);
@@ -561,6 +543,29 @@ html {
 .anki-audio-control .replay-button svg circle {
   fill: transparent;
   stroke: none;
+}
+.anki-source-link a {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  font-size: 0;
+  text-decoration: none;
+}
+.anki-source-link a::before {
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  content: '';
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'/%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.anki-source-link a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 @property --tw-space-y-reverse {
   syntax: "*";

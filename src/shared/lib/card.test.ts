@@ -132,4 +132,23 @@ describe('ArtMiner fields', () => {
     expect(backPreviewSource).toContain('type="button"')
     expect(backPreviewSource).toContain('aria-label="Воспроизвести аудио предложения"')
   })
+
+  test('the existing source anchor is the accessible icon link', () => {
+    const rendered = renderAnkiTemplate(backTemplate, card)
+    const sourceMarkup = rendered.match(
+      /<div data-field="url" class="anki-source-link">([\s\S]*?)<\/div>/,
+    )?.[0]
+
+    expect(sourceMarkup).toBeDefined()
+    expect(sourceMarkup).toContain(card.url)
+    expect(sourceMarkup?.match(/<a\b/g)).toHaveLength(1)
+    expect(sourceMarkup).not.toContain('<svg')
+    expect(sourceMarkup).not.toContain('<span')
+    expect(sourceMarkup).not.toContain('absolute')
+    expect(backPreviewSource).toContain('{#if card.url}')
+    expect(backPreviewSource).toContain('data-field="url" class="anki-source-link"')
+    expect(backPreviewSource).toContain('{@html card.url}')
+    expect(appStyles).toContain('.anki-source-link a::before')
+    expect(appStyles).toContain('.anki-source-link a:focus-visible')
+  })
 })
