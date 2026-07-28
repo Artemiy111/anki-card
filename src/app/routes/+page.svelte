@@ -12,8 +12,14 @@
       <div class="relative">
         {#if card['expression-audio']}
           <h1 class="xs:text-3xl mx-8 text-center text-2xl font-bold">{@html card.expression}</h1>
-          <div class="text-primary absolute top-2 right-0 cursor-pointer">
+          <button
+            type="button"
+            aria-label="Воспроизвести произношение слова"
+            title="Воспроизведение доступно в Anki"
+            class="text-primary absolute top-2 right-0 cursor-pointer rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
             <svg
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -26,8 +32,7 @@
               class="lucide lucide-play-icon lucide-play"
               ><polygon points="6 3 20 12 6 21 6 3" /></svg
             >
-            <div class="hidden">{@html card['expression-audio']}</div>
-          </div>
+          </button>
         {:else}
           <h1 class="xs:text-3xl text-center text-2xl font-bold">{@html card.expression}</h1>
         {/if}

@@ -10,6 +10,7 @@ const frontTemplate = readFileSync(join(assetsDirectory, 'front.html'), 'utf8')
 const backTemplate = readFileSync(join(assetsDirectory, 'back.html'), 'utf8')
 const frontPreviewSource = readFileSync(join(routesDirectory, '+page.svelte'), 'utf8')
 const backPreviewSource = readFileSync(join(routesDirectory, 'back', '+page.svelte'), 'utf8')
+const appStyles = readFileSync(join(routesDirectory, '..', 'app.css'), 'utf8')
 const previewSources = [frontPreviewSource, backPreviewSource].join('\n')
 
 const optionalBackFields = [
@@ -86,13 +87,49 @@ describe('ArtMiner fields', () => {
     for (const condition of previewConditions) expect(backPreviewSource).toContain(condition)
   })
 
-  test('front handles both filled and empty optional audio without changing its content', () => {
+  test('front renders standard Anki audio only when expression audio is filled', () => {
     expect(frontPreviewSource).toContain("{#if card['expression-audio']}")
-    expect(renderAnkiTemplate(frontTemplate, card)).toContain(card['expression-audio'])
+    const renderedWithAudio = renderAnkiTemplate(frontTemplate, card)
+    expect(renderedWithAudio).toContain('data-audio-control="expression-audio"')
+    expect(renderedWithAudio).toContain('aria-labelledby="expression-audio-label"')
+    expect(renderedWithAudio).toContain('Воспроизвести произношение слова')
+    expect(renderedWithAudio).toContain(card['expression-audio'])
 
     const withoutAudio = { ...card, 'expression-audio': '' }
     const rendered = renderAnkiTemplate(frontTemplate, withoutAudio)
-    expect(rendered).not.toContain('lucide-play')
+    expect(rendered).not.toContain('data-audio-control="expression-audio"')
     expect(rendered).toContain(card.expression)
+  })
+
+  test('back renders standard Anki audio only when sentence audio is filled', () => {
+    expect(backPreviewSource).toContain("{#if card['sentence-audio']}")
+    const renderedWithAudio = renderAnkiTemplate(backTemplate, card)
+    expect(renderedWithAudio).toContain('data-audio-control="sentence-audio"')
+    expect(renderedWithAudio).toContain('aria-labelledby="sentence-audio-label"')
+    expect(renderedWithAudio).toContain('Воспроизвести аудио предложения')
+    expect(renderedWithAudio).toContain(card['sentence-audio'])
+
+    const withoutAudio = { ...card, 'sentence-audio': '' }
+    expect(renderAnkiTemplate(backTemplate, withoutAudio)).not.toContain(
+      'data-audio-control="sentence-audio"',
+    )
+  })
+
+  test('audio fields rely on native Anki replay buttons and label the generated controls', () => {
+    for (const template of [frontTemplate, backTemplate]) {
+      expect(template).toContain('role="group"')
+      expect(template).toContain('class="sr-only"')
+      expect(template).toContain('.replay-button')
+      expect(template).toContain(".setAttribute('aria-label'")
+    }
+
+    expect(frontTemplate).not.toContain('<div class="hidden">{{expression-audio}}</div>')
+    expect(backTemplate).not.toContain('<div class="hidden">{{sentence-audio}}</div>')
+    expect(appStyles).toContain('.anki-audio-control .replay-button')
+    expect(appStyles).toContain('.anki-audio-control .replay-button:focus-visible')
+    expect(frontPreviewSource).toContain('type="button"')
+    expect(frontPreviewSource).toContain('aria-label="Воспроизвести произношение слова"')
+    expect(backPreviewSource).toContain('type="button"')
+    expect(backPreviewSource).toContain('aria-label="Воспроизвести аудио предложения"')
   })
 })

@@ -16,8 +16,14 @@
           {@html card.sentence}
         </div>
         {#if card['sentence-audio']}
-          <div class="text-primary relative ml-4 cursor-pointer">
+          <button
+            type="button"
+            aria-label="Воспроизвести аудио предложения"
+            title="Воспроизведение доступно в Anki"
+            class="text-primary relative ml-4 cursor-pointer rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4"
+          >
             <svg
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -30,8 +36,7 @@
               class="lucide lucide-play-icon lucide-play"
               ><polygon points="6 3 20 12 6 21 6 3" /></svg
             >
-            <div class="hidden">{@html card['sentence-audio']}</div>
-          </div>
+          </button>
         {/if}
       </div>
       {#if card['sentence-translation']}

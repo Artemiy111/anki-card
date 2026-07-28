@@ -9,23 +9,22 @@
       <div class="relative">
         {{#expression-audio}}
         <h1 class="xs:text-3xl mx-8 text-center text-2xl font-bold">{{expression}}</h1>
-        <div class="text-primary absolute top-2 right-0 cursor-pointer">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-play-icon lucide-play"
-          >
-            <polygon points="6 3 20 12 6 21 6 3" />
-          </svg>
-          <div class="hidden">{{expression-audio}}</div>
+        <div
+          role="group"
+          aria-labelledby="expression-audio-label"
+          data-audio-control="expression-audio"
+          class="anki-audio-control text-primary absolute top-2 right-0"
+        >
+          <span id="expression-audio-label" class="sr-only">
+            Воспроизвести произношение слова
+          </span>
+          {{expression-audio}}
         </div>
+        <script>
+          document
+            .querySelector('[data-audio-control="expression-audio"] .replay-button')
+            ?.setAttribute('aria-label', 'Воспроизвести произношение слова')
+        </script>
         {{/expression-audio}}
         <!--  -->
         {{^expression-audio}}
