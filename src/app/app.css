@@ -1,4 +1,10 @@
-@import 'tailwindcss';
+@import 'tailwindcss' source(none);
+
+/* Keep the exported Anki CSS independent from fixture field contents. */
+@source '../shared/assets/front.html';
+@source '../shared/assets/back.html';
+@source './routes/**/*.svelte';
+@source '../shared/ui/*.svelte';
 
 @custom-variant dark (&:where(.nightMode, .nightMode *));
 
