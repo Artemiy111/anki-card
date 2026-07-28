@@ -6,7 +6,25 @@
     modelName: string
     fields: string[]
     noteCount: number
+    comparison: {
+      fields: {
+        liveOnly: string[]
+        localOnly: string[]
+      }
+      cardTemplate: {
+        name: string | null
+        issue: null | {
+          code: 'NO_CARD_TEMPLATE' | 'MULTIPLE_CARD_TEMPLATES'
+          message: string
+        }
+        front: ComparisonStatus
+        back: ComparisonStatus
+        css: ComparisonStatus
+      }
+    }
   }
+
+  type ComparisonStatus = 'match' | 'different' | 'unavailable'
 
   type InspectorError = {
     available: boolean
@@ -23,6 +41,12 @@
     | { status: 'error'; message: string }
 
   let state: InspectorState = $state({ status: 'idle' })
+
+  const statusLabel = (status: ComparisonStatus) => {
+    if (status === 'match') return 'Совпадает'
+    if (status === 'different') return 'Отличается'
+    return 'Недоступно'
+  }
 
   const inspect = async () => {
     state = { status: 'loading' }
@@ -103,11 +127,61 @@
       </dl>
 
       <h3>Поля модели</h3>
-      <ol>
+      <ol class="field-list">
         {#each state.data.fields as field (field)}
           <li><code>{field}</code></li>
         {/each}
       </ol>
+
+      <section class="comparison">
+        <h3>Расхождения полей</h3>
+        {#if state.data.comparison.fields.liveOnly.length === 0 && state.data.comparison.fields.localOnly.length === 0}
+          <p class="match-message">Ссылки в локальных шаблонах соответствуют полям ArtMiner.</p>
+        {:else}
+          {#if state.data.comparison.fields.liveOnly.length > 0}
+            <h4>Есть в Anki, но не используются локально</h4>
+            <ul>
+              {#each state.data.comparison.fields.liveOnly as field (field)}
+                <li><code>{field}</code></li>
+              {/each}
+            </ul>
+          {/if}
+          {#if state.data.comparison.fields.localOnly.length > 0}
+            <h4>Есть локально, но отсутствуют в Anki</h4>
+            <ul>
+              {#each state.data.comparison.fields.localOnly as field (field)}
+                <li><code>{field}</code></li>
+              {/each}
+            </ul>
+          {/if}
+        {/if}
+      </section>
+
+      <section class="comparison">
+        <h3>Шаблон карточки</h3>
+        {#if state.data.comparison.cardTemplate.name}
+          <p class="template-name">{state.data.comparison.cardTemplate.name}</p>
+        {/if}
+        {#if state.data.comparison.cardTemplate.issue}
+          <p class="comparison-warning" role="status">
+            {state.data.comparison.cardTemplate.issue.message}
+          </p>
+        {/if}
+        <dl class="template-statuses">
+          <dt>Front</dt>
+          <dd class={state.data.comparison.cardTemplate.front}>
+            {statusLabel(state.data.comparison.cardTemplate.front)}
+          </dd>
+          <dt>Back</dt>
+          <dd class={state.data.comparison.cardTemplate.back}>
+            {statusLabel(state.data.comparison.cardTemplate.back)}
+          </dd>
+          <dt>CSS</dt>
+          <dd class={state.data.comparison.cardTemplate.css}>
+            {statusLabel(state.data.comparison.cardTemplate.css)}
+          </dd>
+        </dl>
+      </section>
     {/if}
   </aside>
 {/if}
@@ -126,7 +200,9 @@
     bottom: 1rem;
     z-index: 20;
     width: min(calc(100dvw - 2rem), 24rem);
+    max-height: calc(100dvh - 2rem);
     padding: 1.25rem;
+    overflow: auto;
     color: var(--color-text);
     background: var(--color-card-background);
     border: 1px solid var(--color-slate-200);
@@ -208,8 +284,8 @@
     font-weight: 700;
   }
 
-  ol {
-    max-height: 15rem;
+  .field-list {
+    max-height: 10rem;
     overflow: auto;
     list-style-position: inside;
   }
@@ -223,6 +299,55 @@
 
   :global(.nightMode) li {
     background: var(--color-slate-800);
+  }
+
+  .comparison {
+    margin-top: 1.25rem;
+  }
+
+  h4,
+  .template-name,
+  .match-message,
+  .comparison-warning {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  h4 {
+    margin-top: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .comparison ul {
+    font-size: 0.875rem;
+  }
+
+  .match-message,
+  .match {
+    color: #16a34a;
+  }
+
+  .comparison-warning,
+  .different {
+    color: #dc2626;
+  }
+
+  .unavailable {
+    color: var(--color-text-muted);
+  }
+
+  :global(.nightMode) .match-message,
+  :global(.nightMode) .match {
+    color: #4ade80;
+  }
+
+  :global(.nightMode) .comparison-warning,
+  :global(.nightMode) .different {
+    color: #f87171;
+  }
+
+  .template-statuses {
+    margin-bottom: 0;
   }
 
   @keyframes spin {
